@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.string('ntrp_rating').notNullable().defaultTo('');
     table.string('home_court').notNullable().defaultTo('');
     table.string('pic_url').notNullable().defaultTo('');
-    table.boolean('admin').notNullable();
+    table.boolean('admin').notNullable().defaultTo(false);
     table.timestamps(true, true);
   });
 };
