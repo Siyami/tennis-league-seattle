@@ -6,7 +6,8 @@
     "knex": "^0.12.7",
     "pg": "^6.1.4",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-google-maps": "^4.11.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
