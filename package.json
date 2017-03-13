@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "humps": "^2.0.0",
     "knex": "^0.12.7",
     "morgan": "^1.8.1",
     "pg": "^6.1.4",
