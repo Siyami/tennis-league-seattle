@@ -4,7 +4,7 @@ const boom = require('boom');
 const bcrypt = require('bcrypt-as-promised');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const knex = require('../knex');
+const knex = require('../../knex');
 const { camelizeKeys } = require('humps');
 
 const router = express.Router();

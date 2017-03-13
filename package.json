@@ -19,8 +19,9 @@
     "superagent": "^3.5.0"
   },
   "engines": {
-    "node": "7.7.2"
+    "node": "v7.7.2"
   },
+  "proxy": "http://localhost:4000",
   "devDependencies": {
     "dotenv": "^4.0.0",
     "foreman": "^2.0.0",
@@ -29,11 +30,12 @@
   },
   "scripts": {
     "knex": "knex",
-    "start": "react-scripts start",
+    "start": "react-scripts start & nodemon server/bin/www",
+    "start-prod": "env PORT=3000 nodemon server/bin/www",
+    "nf": "nf start",
+    "nodemon": "nodemon server/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "nf": "nf start",
-    "nodemon": "nodemon app.js"
+    "eject": "react-scripts eject"
   }
 }
