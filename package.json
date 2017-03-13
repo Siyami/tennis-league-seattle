@@ -18,8 +18,12 @@
     "react-google-maps": "^4.11.0",
     "superagent": "^3.5.0"
   },
+  "engines": {
+    "node": "7.7.2"
+  },
   "devDependencies": {
     "dotenv": "^4.0.0",
+    "foreman": "^2.0.0",
     "nodemon": "^1.11.0",
     "react-scripts": "0.9.5"
   },
@@ -28,6 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "nf": "nf start",
+    "nodemon": "nodemon app.js"
   }
 }
