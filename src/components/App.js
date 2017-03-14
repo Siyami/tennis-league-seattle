@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import '../App.css'
 import Map from './Map'
 import Courts from './Courts'
-import superagent from 'superagent'
 import axios from 'axios'
+import { Grid } from 'react-bootstrap'
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 class App extends Component {
 	constructor(){
@@ -67,13 +68,42 @@ class App extends Component {
     // ]
 
 		return (
-			<div>
-				<div style={{width:600, height:600}}>
-					<Map center={location} markers={this.state.courts} />
+			<Grid>
+
+				<Navbar inverse collapseOnSelect>
+			    <Navbar.Header>
+			      <Navbar.Brand>
+			        <a href="#">TennisSeattle</a>
+			      </Navbar.Brand>
+			      <Navbar.Toggle />
+			    </Navbar.Header>
+			    <Navbar.Collapse>
+			      <Nav>
+							<NavItem eventKey={4} href="#">Profile</NavItem>
+							<NavDropdown eventKey={3} title="Leagues" id="basic-nav-dropdown">
+								<MenuItem eventKey={3.1}>Spring League 2017</MenuItem>
+								<MenuItem eventKey={3.2}>Summer League 2017</MenuItem>
+							</NavDropdown>
+			        <NavItem eventKey={1} href="#">Find Courts</NavItem>
+			        <NavItem eventKey={2} href="#">Submit Score</NavItem>
+							<NavItem eventKey={3} href="#">View Score</NavItem>
+			      </Nav>
+			      <Nav pullRight>
+			        <NavItem eventKey={1} href="#">Link Right</NavItem>
+			        <NavItem eventKey={2} href="#">Link Right</NavItem>
+			      </Nav>
+			    </Navbar.Collapse>
+			  </Navbar>
+
+				<div>
+					<div style={{width:900, height:600}}>
+						<Map center={location} markers={this.state.courts} />
+					</div>
+
+					<Courts courts={this.state.courts} />
 				</div>
 
-				<Courts courts={this.state.courts} />
-			</div>
+			</Grid>
 		)
 	}
 }
