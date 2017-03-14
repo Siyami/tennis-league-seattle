@@ -34,7 +34,7 @@ class App extends Component {
 
 		axios.get(url)
 			.then(({data}) => {
-				console.log(data.response.venues);
+				// console.log(data.response.venues);
 				this.setState({
 					courts: data.response.venues
 				})
@@ -95,8 +95,12 @@ class App extends Component {
 			    </Navbar.Collapse>
 			  </Navbar>
 
+				{/* {React.cloneElement(
+					this.props.children
+				)} */}
+
 				<div>
-					<div style={{width:900, height:600}}>
+					<div style={{width:1140, height:600}}>
 						<Map center={location} markers={this.state.courts} />
 					</div>
 
