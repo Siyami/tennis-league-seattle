@@ -14,7 +14,6 @@ class Courts extends Component {
 				<ol>
 					{list}
 				</ol>
-
 			</div>
 		)
 	}

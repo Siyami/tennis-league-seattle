@@ -11,7 +11,8 @@ class Map extends Component {
 				position: {
 					lat: court.location.lat,
 					lng: court.location.lng
-				}
+				},
+				title: court.location.address
 			}
 
 			return <Marker key={i} {...marker} />
