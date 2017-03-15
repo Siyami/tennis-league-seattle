@@ -5,8 +5,37 @@ import '../App.css';
 import {  } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			isLoggedIn: false
+		}
+
+	}
+
+	// Move get request token inside the constructor
+	componentWillMount() {
+		axios.get('api/token')
+			.then((res) => {
+				console.log(res.data);
+				this.setState({
+					isLoggedIn: res.data
+				})
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+
+	setStateFromLoginComponent() {
+		this.setState({
+			isLoggedIn: true
+		})
+	}
 
 	render(){
 		return (
@@ -30,15 +59,26 @@ class App extends Component {
 			        <NavItem eventKey={2} onClick={() => browserHistory.push('/score')}>Submit Score</NavItem>
 							<NavItem eventKey={3} href="#">View Score</NavItem>
 			      </Nav>
-			      <Nav pullRight>
-			        <NavItem eventKey={1} href="#">Link Right</NavItem>
-			        <NavItem eventKey={2} href="#">Link Right</NavItem>
-			      </Nav>
+						{this.state.isLoggedIn ? (
+							<Nav pullRight>
+								<NavItem eventKey={1} href="#">Sign Out</NavItem>
+							</Nav>
+
+						) : (
+							<Nav pullRight>
+								<NavItem eventKey={1} onClick={() => {browserHistory.push('/login')}}>Log In</NavItem>
+								<NavItem eventKey={2} onClick={() => {browserHistory.push('/signup')}}>Sign Up</NavItem>
+							</Nav>
+						)
+					}
 			    </Navbar.Collapse>
 			  </Navbar>
 
 				{React.cloneElement(
-					this.props.children
+					this.props.children,
+					{
+						setStateFromLoginComponent: this.setStateFromLoginComponent
+					}
 				)}
 
 			</div>
