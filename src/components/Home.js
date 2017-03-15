@@ -4,7 +4,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        display picture slide show here
+        Hello from Home Component
       </div>
     )
   }
