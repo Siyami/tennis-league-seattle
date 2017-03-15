@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import '../App.css';
 // import axios from 'axios';
-import { Grid } from 'react-bootstrap';
+import {  } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
@@ -10,7 +10,7 @@ class App extends Component {
 
 	render(){
 		return (
-			<Grid>
+			<div>
 
 				<Navbar inverse collapseOnSelect>
 			    <Navbar.Header>
@@ -27,7 +27,7 @@ class App extends Component {
 								<MenuItem eventKey={3.2}>Summer League 2017</MenuItem>
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
-			        <NavItem eventKey={2} href="#">Submit Score</NavItem>
+			        <NavItem eventKey={2} onClick={() => browserHistory.push('/score')}>Submit Score</NavItem>
 							<NavItem eventKey={3} href="#">View Score</NavItem>
 			      </Nav>
 			      <Nav pullRight>
@@ -41,7 +41,7 @@ class App extends Component {
 					this.props.children
 				)}
 
-			</Grid>
+			</div>
 		)
 	}
 }
