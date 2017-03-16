@@ -15,26 +15,40 @@ class App extends Component {
 			isLoggedIn: false
 		}
 
+		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
+		this.logOut = this.logOut.bind(this);
+
 	}
 
 	// Move get request token inside the constructor
-	componentWillMount() {
-		axios.get('api/token')
+	componentWillMount () {
+		axios.get('/api/token')
 			.then((res) => {
 				console.log(res.data);
-				this.setState({
-					isLoggedIn: res.data
-				})
-			})
-			.catch((err) => {
-				console.log(err);
+				 this.setState({ isLoggedIn: res.data })
+			 })
+			.catch(err => {
+				console.log(err)
 			});
 	}
+
 
 	setStateFromLoginComponent() {
 		this.setState({
 			isLoggedIn: true
 		})
+	}
+
+	logOut() {
+		axios.delete('api/token')
+			.then((res) => {
+				this.setState({
+					isLoggedIn: false
+				})
+			})
+			.catch((err) => {
+
+			});
 	}
 
 	render(){
@@ -61,7 +75,7 @@ class App extends Component {
 			      </Nav>
 						{this.state.isLoggedIn ? (
 							<Nav pullRight>
-								<NavItem eventKey={1} href="#">Sign Out</NavItem>
+								<NavItem eventKey={1} onClick={this.logOut}>Sign Out</NavItem>
 							</Nav>
 
 						) : (

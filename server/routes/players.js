@@ -1,4 +1,3 @@
-/* eslint max-len: ["error", 200]*/
 'use strict';
 
 const bcrypt = require('bcrypt-as-promised');
@@ -6,22 +5,23 @@ const boom = require('boom');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const knex = require('../../knex');
+const { camelizeKeys, decamelizeKeys } = require('humps');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
 router.post('/players', (req, res, next) => {
-  const {
-    email, password, first_name, last_name, ntrp_rating, home_court, pic_url, admin
-  } = req.body;
-  console.log(req.body);
+  const { email, password } = req.body;
 
   if (!email || !email.trim()) {
     return next(boom.create(400, 'Email must not be blank'));
   }
 
   if (!password || password.length < 8) {
-    return next(boom.create(400, 'Password must be at least 8 characters'));
+    return next(boom.create(
+      400,
+      'Password must be at least 8 characters long'
+    ));
   }
 
   knex('players')
@@ -32,38 +32,28 @@ router.post('/players', (req, res, next) => {
         throw boom.create(400, 'Email already exists');
       }
 
-      return bcrypt.hash(req.body.password, 12)
+      return bcrypt.hash(password, 12);
     })
+    .then((hashedPassword) => {
+      const { firstName, lastName, ntrpRating, homeCourt, picUrl, admin } = req.body;
+      const insertPlayer = { firstName, lastName, email, hashedPassword, ntrpRating, homeCourt, picUrl, admin };
 
-  .then((hashed_password) => {
-      return knex('players').insert({
-        first_name,
-        last_name,
-        email,
-        hashed_password,
-        ntrp_rating,
-        home_court,
-        pic_url,
-        admin
-      }, '*');
+      return knex('players').insert(decamelizeKeys(insertPlayer), '*');
     })
-    .then((players) => {
-      const player = players[0];
-
-      const claim = {
-        player_id: player.id
-      };
+    .then((rows) => {
+      const player = camelizeKeys(rows[0]);
+      const claim = { playerId: player.id };
       const token = jwt.sign(claim, process.env.JWT_KEY, {
-        expiresIn: '7 days' // Adds an expiration field to the payload
+        expiresIn: '7 days'
       });
 
-      res.cookie('token', token, { // cookie is at the header
+      res.cookie('token', token, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // lives 7 days, if you don't include expires after you log out
-        secure: router.get('env') === 'production' // forces the token only be sent as https
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        secure: router.get('env') === 'production'
       });
 
-      delete player.hashed_password;
+      delete player.hashedPassword;
 
       res.send(player);
     })
@@ -72,4 +62,4 @@ router.post('/players', (req, res, next) => {
     });
 });
 
-module.exports = router
+module.exports = router;

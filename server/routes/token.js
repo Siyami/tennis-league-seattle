@@ -9,16 +9,6 @@ const { camelizeKeys } = require('humps');
 
 const router = express.Router();
 
-router.get('/token', (req, res) => {
-  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, _payload) => {
-    if (err) {
-      return res.send(false);
-    }
-
-    res.send(true);
-  });
-});
-
 router.post('/token', (req, res, next) => {
   let player;
 
@@ -29,7 +19,6 @@ router.post('/token', (req, res, next) => {
       if (!row) {
         throw boom.create(400, 'Bad email or password');
       }
-
       player = camelizeKeys(row);
 
       return bcrypt.compare(req.body.password, player.hashedPassword);
@@ -56,6 +45,16 @@ router.post('/token', (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+router.get('/token', (req, res) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, _payload) => {
+    if (err) {
+      return res.send(false);
+    }
+
+    res.send(true);
+  });
 });
 
 router.delete('/token', (req, res) => {

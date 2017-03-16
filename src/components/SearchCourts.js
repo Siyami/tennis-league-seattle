@@ -18,7 +18,7 @@ class SearchCourts extends Component {
 
 		axios.get(url)
 			.then(({data}) => {
-				console.log(data);
+				// console.log(data);
 				this.setState({
 					courts: data.response.venues
 				})
