@@ -10,6 +10,19 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+router.get('/players', (_req, res, next) => {
+  knex('players')
+    .orderBy('first_name')
+    .then((rows) => {
+      const players = camelizeKeys(rows);
+
+      res.send(players);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post('/players', (req, res, next) => {
   const { email, password } = req.body;
 
@@ -52,6 +65,10 @@ router.post('/players', (req, res, next) => {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
         secure: router.get('env') === 'production'
       });
+
+      // Create new cookie for First Name and Last Name
+      res.cookie('playerFirstName', player.firstName);
+      res.cookie('playerLastName', player.lastName);
 
       delete player.hashedPassword;
 

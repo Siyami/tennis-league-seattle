@@ -40,10 +40,12 @@ class Login extends Component {
        validateStatus: (status) => status < 500
      })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
 
       if(res.status < 400) {
+
         this.props.setStateFromLoginComponent()
+
         browserHistory.push('/')
       }
       else {

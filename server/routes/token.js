@@ -35,6 +35,10 @@ router.post('/token', (req, res, next) => {
         secure: router.get('env') === 'production'
       });
 
+      // Create new cookie for First Name and Last Name
+      res.cookie('playerFirstName', player.firstName);
+      res.cookie('playerLastName', player.lastName);
+
       delete player.hashedPassword;
 
       res.send(player);

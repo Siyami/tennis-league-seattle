@@ -9,11 +9,15 @@ exports.up = function(knex) {
       .inTable('players')
       .onDelete('CASCADE')
       .index();
-    table.boolean('won').notNullable().defaultTo(false);
-    table.boolean('lost').notNullable().defaultTo(false);
-    table.string('score').notNullable().defaultTo('');
-    table.string('score_date').notNullable().defaultTo('');
     table.string('opponent').notNullable().defaultTo('');
+    table.string('result').notNullable().defaultTo('');
+    table.string('first_set1').notNullable().defaultTo('');
+    table.string('first_set2').notNullable().defaultTo('');
+    table.string('second_set1').notNullable().defaultTo('');
+    table.string('second_set2').notNullable().defaultTo('');
+    table.string('tie_break1').notNullable().defaultTo('');
+    table.string('tie_break2').notNullable().defaultTo('');
+    table.string('score_date').notNullable().defaultTo('');
     table.timestamps(true, true);
 
   });

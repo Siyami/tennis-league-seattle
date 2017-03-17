@@ -12,7 +12,7 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			isLoggedIn: false
+			isLoggedIn: false,
 		}
 
 		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
@@ -32,9 +32,10 @@ class App extends Component {
 			});
 	}
 
-	setStateFromLoginComponent() {
+	setStateFromLoginComponent(loggedInPlayerFirstName, loggedInPlayerLastName) {
+		// console.log(loggedInPlayerFirstName + currentPlayerLastName);
 		this.setState({
-			isLoggedIn: true
+			isLoggedIn: true,
 		})
 	}
 
@@ -70,7 +71,7 @@ class App extends Component {
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
 			        <NavItem eventKey={2} onClick={() => browserHistory.push('/score')}>Submit Score</NavItem>
-							<NavItem eventKey={3} href="#">View Score</NavItem>
+							<NavItem eventKey={3} href="#">View Scores</NavItem>
 			      </Nav>
 						{this.state.isLoggedIn ? (
 							<Nav pullRight>
