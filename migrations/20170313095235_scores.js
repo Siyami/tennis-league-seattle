@@ -9,12 +9,13 @@ exports.up = function(knex) {
       .inTable('players')
       .onDelete('CASCADE')
       .index();
-    table.integer('won');
-    table.integer('lost');
-    table.string('score');
-    table.string('score_date');
-    table.string('oppenent');
+    table.boolean('won').notNullable().defaultTo(false);
+    table.boolean('lost').notNullable().defaultTo(false);
+    table.string('score').notNullable().defaultTo('');
+    table.string('score_date').notNullable().defaultTo('');
+    table.string('oppenent').notNullable().defaultTo('');
     table.timestamps(true, true);
+
   });
 };
 
