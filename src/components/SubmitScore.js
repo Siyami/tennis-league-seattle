@@ -12,7 +12,7 @@ class SubmitScore extends Component {
       lost: false,
       score: '',
       scoreDate: '',
-      opponent: ''
+      opponent: 'si'
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,6 +51,32 @@ class SubmitScore extends Component {
   render() {
     return (
       <Grid>
+        {this.state.opponent === null ? (
+            <div>hello</div>
+          ) : (
+            <div>Hi</div>
+          )
+        }
+
+
+        {/* {this.state.isLoggedIn ? (
+          <Nav pullRight>
+            <NavItem eventKey={1} onClick={this.logOut}>Sign Out</NavItem>
+          </Nav>
+
+        ) : (
+          <Nav pullRight>
+            <NavItem eventKey={1} onClick={() => {browserHistory.push('/login')}}>Log In</NavItem>
+            <NavItem eventKey={2} onClick={() => {browserHistory.push('/signup')}}>Sign Up</NavItem>
+          </Nav>
+        )
+      } */}
+
+
+
+
+
+
         <Form onSubmit={this.handleSubmit} style={{margin: "10% 20%"}}>
           loggedInPlayer vs
           <FormGroup controlId="formControlsSelect">

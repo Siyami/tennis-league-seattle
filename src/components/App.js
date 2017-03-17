@@ -32,7 +32,6 @@ class App extends Component {
 			});
 	}
 
-
 	setStateFromLoginComponent() {
 		this.setState({
 			isLoggedIn: true
