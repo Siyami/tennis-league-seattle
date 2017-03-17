@@ -13,7 +13,7 @@ exports.up = function(knex) {
     table.boolean('lost').notNullable().defaultTo(false);
     table.string('score').notNullable().defaultTo('');
     table.string('score_date').notNullable().defaultTo('');
-    table.string('oppenent').notNullable().defaultTo('');
+    table.string('opponent').notNullable().defaultTo('');
     table.timestamps(true, true);
 
   });
