@@ -70,8 +70,8 @@ class App extends Component {
 								<MenuItem eventKey={3.2}>Summer League 2017</MenuItem>
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
-			        <NavItem eventKey={2} onClick={() => browserHistory.push('/score')}>Submit Score</NavItem>
-							<NavItem eventKey={3} href="#">View Scores</NavItem>
+			        <NavItem eventKey={2} onClick={() => browserHistory.push('/submitscore')}>Submit Score</NavItem>
+							<NavItem eventKey={3} onClick={() => browserHistory.push('/viewscores')}>View Scores</NavItem>
 			      </Nav>
 						{this.state.isLoggedIn ? (
 							<Nav pullRight>

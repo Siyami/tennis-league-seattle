@@ -33,6 +33,7 @@ const authorize = function(req, res, next) {
 app.use('/api', require('./routes/players'));
 app.use('/api', require('./routes/token'));
 app.use('/api', authorize, require('./routes/scores'));
+app.use('/api', authorize, require('./routes/combined_scores'));
 
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));

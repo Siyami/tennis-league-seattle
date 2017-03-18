@@ -66,7 +66,7 @@ router.post('/players', (req, res, next) => {
         secure: router.get('env') === 'production'
       });
 
-      // Create new cookie for First Name and Last Name
+      // Create new cookie for Player First Name and Last Name
       res.cookie('playerFirstName', player.firstName);
       res.cookie('playerLastName', player.lastName);
 
