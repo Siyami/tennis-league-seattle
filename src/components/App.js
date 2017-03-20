@@ -64,14 +64,14 @@ class App extends Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav>
-							<NavItem eventKey={4} href="#">Profile</NavItem>
+							<NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem>
 							<NavDropdown eventKey={3} title="Leagues" id="basic-nav-dropdown">
 								<MenuItem eventKey={3.1}>Spring League 2017</MenuItem>
 								<MenuItem eventKey={3.2}>Summer League 2017</MenuItem>
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
 			        <NavItem eventKey={2} onClick={() => browserHistory.push('/submitscore')}>Submit Score</NavItem>
-							<NavItem eventKey={3} onClick={() => browserHistory.push('/viewscores')}>View Scores</NavItem>
+							<NavItem eventKey={3} onClick={() => browserHistory.push('/viewscores')}>View All Scores</NavItem>
 			      </Nav>
 						{this.state.isLoggedIn ? (
 							<Nav pullRight>

@@ -8,6 +8,7 @@ import SubmitScore from './SubmitScore';
 import Login from './Login';
 import SignUp from './SignUp';
 import ViewScores from './ViewScores';
+import Profile from './Profile';
 
 export default (
   <Route path="/" component={App}>
@@ -18,5 +19,6 @@ export default (
     <Route path="/login" component={Login} />
     <Route path="/signup" component={SignUp} />
     <Route path="/viewscores" component={ViewScores} />
+    <Route path="/profile" component={Profile} />
   </Route>
 );

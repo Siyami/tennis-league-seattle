@@ -35,9 +35,19 @@ router.post('/token', (req, res, next) => {
         secure: router.get('env') === 'production'
       });
 
-      // Create new cookie for First Name and Last Name
-      res.cookie('playerFirstName', player.firstName);
-      res.cookie('playerLastName', player.lastName);
+      // Create new cookies for First Name, Last Name and playerId
+      res.cookie('playerFirstName', player.firstName, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        secure: router.get('env') === 'production'
+      });
+      res.cookie('playerLastName', player.lastName, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        secure: router.get('env') === 'production'
+      });
+      res.cookie('playerId', player.id, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        secure: router.get('env') === 'production'
+      });
 
       delete player.hashedPassword;
 
@@ -63,6 +73,9 @@ router.get('/token', (req, res) => {
 
 router.delete('/token', (req, res) => {
   res.clearCookie('token');
+  res.clearCookie('playerFirstName');
+  res.clearCookie('playerLastName');
+  res.clearCookie('playerId');
   res.end();
 });
 

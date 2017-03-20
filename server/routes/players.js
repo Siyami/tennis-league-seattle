@@ -23,6 +23,31 @@ router.get('/players', (_req, res, next) => {
     });
 });
 
+router.get('/players/:id', (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return next();
+  }
+
+  knex('players')
+    .where('id', id)
+    .first()
+    .then((row) => {
+      if (!row) {
+        throw boom.create(404, 'Not Found');
+      }
+
+      const player = camelizeKeys(row);
+
+      delete player.hashedPassword;
+      res.send(player);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post('/players', (req, res, next) => {
   const { email, password } = req.body;
 
@@ -66,9 +91,10 @@ router.post('/players', (req, res, next) => {
         secure: router.get('env') === 'production'
       });
 
-      // Create new cookie for Player First Name and Last Name
+      // Create new cookie for Player First Name, Last Name and Id
       res.cookie('playerFirstName', player.firstName);
       res.cookie('playerLastName', player.lastName);
+      res.cookie('playerId', player.id);
 
       delete player.hashedPassword;
 
