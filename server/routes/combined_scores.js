@@ -26,6 +26,7 @@ router.get('/combined_scores', (req, res, next) => {
     })
 })
 
+// One to Many relation between users and scores table
 router.get('/combined_scores/:id', (req, res, next) => {
   const id = Number.parseInt(req.params.id);
 
@@ -49,7 +50,5 @@ router.get('/combined_scores/:id', (req, res, next) => {
     })
 
 })
-
-
 
 module.exports = router;

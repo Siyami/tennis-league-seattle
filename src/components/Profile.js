@@ -20,6 +20,7 @@ class Profile extends Component {
     // get loggedIn playerId from cookie that I created in token route
     const playerId = cookie.load('playerId');
 
+    // Get loggedIn player's info
     axios.get(`/api/players/${playerId}`)
      .then((res) => {
        this.setState({
@@ -31,6 +32,7 @@ class Profile extends Component {
        console.log(err);
      })
 
+     // Get loggedIn player's scores
      axios.get(`/api/combined_scores/${playerId}`)
       .then((res) => {
         console.log(res.data);
@@ -70,7 +72,6 @@ class Profile extends Component {
                   <th>Result</th>
                   <th>Score</th>
                 </tr>
-                <div></div>
               </thead>
               <tbody>
                 {this.state.playerScores.map((score) => {
@@ -80,7 +81,7 @@ class Profile extends Component {
                       <td>{`${score.firstName} ${score.lastName} vs. ${score.opponent}`}</td>
                       <td>{score.result}</td>
                       <td>
-                        {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : (<td></td>)}
+                        {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : null}
                       </td>
                     </tr>
                   )

@@ -8,42 +8,43 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/scores', (_req, res, next) => {
-  knex('scores')
-    .orderBy('id')
-    .then((rows) => {
-      const scores = camelizeKeys(rows);
+// router.get('/scores', (_req, res, next) => {
+//   knex('scores')
+//     .orderBy('id')
+//     .then((rows) => {
+//       const scores = camelizeKeys(rows);
+//
+//       res.send(scores);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
-      res.send(scores);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get('/scores/:id', (req, res, next) => {
-  const id = Number.parseInt(req.params.id);
-
-  if (Number.isNaN(id)) {
-    return next();
-  }
-
-  knex('scores')
-    .where('id', id)
-    .first()
-    .then((row) => {
-      if (!row) {
-        throw boom.create(404, 'Not Found');
-      }
-
-      const score = camelizeKeys(row);
-
-      res.send(score);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+// router.get('/scores/:id', (req, res, next) => {
+//   const id = Number.parseInt(req.params.id);
+//
+//   if (Number.isNaN(id)) {
+//     return next();
+//   }
+//
+//   knex('scores')
+//     .innerJoin('players')
+//     .where('scores.id', id)
+//     .first()
+//     .then((row) => {
+//       if (!row) {
+//         throw boom.create(404, 'Not Found');
+//       }
+//
+//       const score = camelizeKeys(row);
+//
+//       res.send(score);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
 router.post('/scores', (req, res, next) => {
   const { opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 } = req.body;
@@ -82,89 +83,89 @@ router.post('/scores', (req, res, next) => {
     });
 });
 
-router.patch('/scores/:id', (req, res, next) => {
-  const id = Number.parseInt(req.params.id);
+// router.patch('/scores/:id', (req, res, next) => {
+//   const id = Number.parseInt(req.params.id);
+//
+//   if (Number.isNaN(id)) {
+//     return next();
+//   }
+//
+//   knex('scores')
+//     .where('id', id)
+//     .first()
+//     .then((score) => {
+//       if (!score) {
+//         throw boom.create(404, 'Not Found');
+//       }
+//
+//       const { title, author, genre, description, coverUrl } = req.body;
+//       const updateScore= {};
+//
+//       if (title) {
+//         updateScore.title = title;
+//       }
+//
+//       if (author) {
+//         updateScore.author = author;
+//       }
+//
+//       if (genre) {
+//         updateScore.genre = genre;
+//       }
+//
+//       if (description) {
+//         updateScore.description = description;
+//       }
+//
+//       if (coverUrl) {
+//         updateScore.coverUrl = coverUrl;
+//       }
+//
+//       return knex('scores')
+//         .update(decamelizeKeys(updateScore), '*')
+//         .where('id', id);
+//     })
+//     .then((rows) => {
+//       const score = camelizeKeys(rows[0]);
+//
+//       res.send(score);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
-  if (Number.isNaN(id)) {
-    return next();
-  }
-
-  knex('scores')
-    .where('id', id)
-    .first()
-    .then((score) => {
-      if (!score) {
-        throw boom.create(404, 'Not Found');
-      }
-
-      const { title, author, genre, description, coverUrl } = req.body;
-      const updateScore= {};
-
-      if (title) {
-        updateScore.title = title;
-      }
-
-      if (author) {
-        updateScore.author = author;
-      }
-
-      if (genre) {
-        updateScore.genre = genre;
-      }
-
-      if (description) {
-        updateScore.description = description;
-      }
-
-      if (coverUrl) {
-        updateScore.coverUrl = coverUrl;
-      }
-
-      return knex('scores')
-        .update(decamelizeKeys(updateScore), '*')
-        .where('id', id);
-    })
-    .then((rows) => {
-      const score = camelizeKeys(rows[0]);
-
-      res.send(score);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.delete('/scores/:id', (req, res, next) => {
-  const id = Number.parseInt(req.params.id);
-
-  if (Number.isNaN(id)) {
-    return next();
-  }
-
-  let score;
-
-  knex('scores')
-    .where('id', id)
-    .first()
-    .then((row) => {
-      if (!row) {
-        throw boom.create(404, 'Not Found');
-      }
-
-      score = camelizeKeys(row);
-
-      return knex('scores')
-        .del()
-        .where('id', id);
-    })
-    .then(() => {
-      delete score.id;
-
-      res.send(score);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+// router.delete('/scores/:id', (req, res, next) => {
+//   const id = Number.parseInt(req.params.id);
+//
+//   if (Number.isNaN(id)) {
+//     return next();
+//   }
+//
+//   let score;
+//
+//   knex('scores')
+//     .where('id', id)
+//     .first()
+//     .then((row) => {
+//       if (!row) {
+//         throw boom.create(404, 'Not Found');
+//       }
+//
+//       score = camelizeKeys(row);
+//
+//       return knex('scores')
+//         .del()
+//         .where('id', id);
+//     })
+//     .then(() => {
+//       delete score.id;
+//
+//       res.send(score);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
 module.exports = router;

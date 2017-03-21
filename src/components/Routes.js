@@ -9,6 +9,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import ViewScores from './ViewScores';
 import Profile from './Profile';
+import SpringLeague2017 from './SpringLeague2017';
 
 export default (
   <Route path="/" component={App}>
@@ -20,5 +21,6 @@ export default (
     <Route path="/signup" component={SignUp} />
     <Route path="/viewscores" component={ViewScores} />
     <Route path="/profile" component={Profile} />
+    <Route path="/SpringLeague2017" component={SpringLeague2017} />
   </Route>
 );

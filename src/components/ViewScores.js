@@ -45,7 +45,7 @@ class ViewScores extends Component {
                   <td>{`${score.firstName} ${score.lastName}`}</td>
                   <td>{score.opponent}</td>
                   <td>
-                    {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : (<td></td>)}
+                    {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : (null)}
                   </td>
                   <td>{score.scoreDate}</td>
                 </tr>
