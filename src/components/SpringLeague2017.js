@@ -13,7 +13,7 @@ class SpringLeague extends Component {
   }
 
   componentWillMount() {
-    axios.get('/api/players_leagues/3')
+    axios.get('/api/players_leagues/1')
      .then((res) => {
        console.log(res.data);
        this.setState({ playersInSpring2017: res.data })
