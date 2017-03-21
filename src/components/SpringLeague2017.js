@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Grid } from 'react-bootstrap';
+import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class SpringLeague extends Component {
@@ -9,6 +9,8 @@ class SpringLeague extends Component {
     this.state = {
       playersInSpring2017: []
     }
+
+    this.joinLeague = this.joinLeague.bind(this);
 
   }
 
@@ -23,10 +25,30 @@ class SpringLeague extends Component {
      })
   }
 
+  joinLeague() {
+
+    axios({
+      method: 'post',
+      url: '/api/players_leagues',
+      data: {
+        leagueId: 1
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+  }
+
   render() {
     return (
       <Grid>
         {/* <h3>{this.state.playersInSpring2017[0].leagueName}</h3> */}
+        <Button onClick={this.joinLeague} bsStyle="primary">Join League</Button>
+
         <Table responsive striped condensed hover bordered>
           <thead>
             <tr>
