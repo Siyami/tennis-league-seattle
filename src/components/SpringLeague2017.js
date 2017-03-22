@@ -100,6 +100,7 @@ class SpringLeague extends Component {
               let won = 0;
               let lost = 0;
               let numOfMatches = 0;
+              // player.ratio = won/numOfMatches;
               return (
                 <tr>
                   <td>{`${player.firstName} ${player.lastName}`}</td>
