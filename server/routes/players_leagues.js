@@ -9,6 +9,24 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+///////
+router.get('/combined_scores', (req, res, next) => {
+  knex('scores')
+    .select('*')
+    .innerJoin('players', 'scores.player_id', 'players.id')
+    .orderBy('scores.score_date')
+    .then((scores) => {
+      const responseData = camelizeKeys(scores)
+
+      res.send(responseData);
+    })
+    .catch((err) => {
+      console.log(err);
+      return next(boom.create(500, 'from api combined_scores get request'))
+    })
+})
+///////
+
 router.get('/players_leagues/:leagueId', (req, res, next) => {
   const leagueId = Number.parseInt(req.params.leagueId)
 
@@ -19,6 +37,7 @@ router.get('/players_leagues/:leagueId', (req, res, next) => {
   knex('players_leagues')
     .innerJoin('leagues', 'leagues.id', 'players_leagues.league_id')
     .innerJoin('players', 'players.id', 'players_leagues.player_id')
+    // .innerJoin('scores', 'scores.player_id', 'players.id' )
     .where('leagues.id', leagueId)
     // .orderBy('leagues.starts_at')
     .then((rows) => {

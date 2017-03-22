@@ -7,7 +7,8 @@ class SpringLeague extends Component {
     super(props)
 
     this.state = {
-      playersInSpring2017: []
+      playersInSpring2017: [],
+      scores: []
     }
 
     this.joinLeague = this.joinLeague.bind(this);
@@ -23,6 +24,18 @@ class SpringLeague extends Component {
      .catch((err) => {
        console.log(err);
      })
+
+     // Get all player scores
+     axios.get('/api/combined_scores')
+       .then((res) => {
+         console.log(res.data);
+         this.setState({
+           scores: res.data
+         })
+       })
+       .catch((err) => {
+         console.log(err);
+       })
   }
 
   joinLeague() {
@@ -46,8 +59,8 @@ class SpringLeague extends Component {
   render() {
     return (
       <Grid>
-        {/* <h3>{this.state.playersInSpring2017[0].leagueName}</h3> */}
-        <Button onClick={this.joinLeague} bsStyle="primary">Join League</Button>
+        <h3>Spring 2017 Tennis League</h3>
+        <Button onClick={this.joinLeague} bsStyle="primary" disabled>Join League</Button>
 
         <Table responsive striped condensed hover bordered>
           <thead>
@@ -55,35 +68,37 @@ class SpringLeague extends Component {
               <th>Player Name</th>
               <th>W/L</th>
               <th>Home Court</th>
-              <th>Num of Matched Played</th>
+              <th>Total Matches Played</th>
               <th>Email</th>
             </tr>
             <div></div>
           </thead>
           <tbody>
             {this.state.playersInSpring2017.map((player) => {
+              let won = 0;
+              let lost = 0;
+              let numOfMatches = 0;
               return (
                 <tr>
                   <td>{`${player.firstName} ${player.lastName}`}</td>
-                  <td></td>
+                  <td>{this.state.scores.forEach((score) => {
+                    // Check if player submitted any scores in this league
+                    if (score.playerId === player.playerId) {
+                      numOfMatches++;
+                      if(score.result === 'Won') {
+                        won++;
+                      }
+                      else if (score.result === 'Lost') {
+                        lost++;
+                      }
+                    }
+                  })}{`Won: ${won} Lost: ${lost}`}</td>
                   <td>{player.homeCourt}</td>
-                  <td></td>
+                  <td>{numOfMatches}</td>
                   <td>{player.email}</td>
                 </tr>
               )
             })}
-            {/* {this.state.playerScores.map((score) => {
-              return (
-                <tr>
-                  <td>{score.scoreDate}</td>
-                  <td>{`${score.firstName} ${score.lastName} vs. ${score.opponent}`}</td>
-                  <td>{score.result}</td>
-                  <td>
-                    {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : (<td></td>)}
-                  </td>
-                </tr>
-              )
-            })} */}
           </tbody>
         </Table>
       </Grid>
