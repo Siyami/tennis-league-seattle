@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
+import cookie from 'react-cookie';
 
 class SpringLeague extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class SpringLeague extends Component {
 
     this.state = {
       playersInSpring2017: [],
-      scores: []
+      scores: [],
+      isButtonDisabled: false
     }
 
     this.joinLeague = this.joinLeague.bind(this);
@@ -20,6 +22,19 @@ class SpringLeague extends Component {
      .then((res) => {
        console.log(res.data);
        this.setState({ playersInSpring2017: res.data })
+
+       this.state.playersInSpring2017.forEach((player) => {
+
+         // get loggedIn playerId from cookie that I created in token route
+         const id = cookie.load('playerId');
+
+         // if logged in players id is in players_leagues table then disable join league button
+         if (player.playerId == id) {
+           this.setState({ isButtonDisabled: true })
+         }
+         
+       })
+
      })
      .catch((err) => {
        console.log(err);
@@ -49,6 +64,7 @@ class SpringLeague extends Component {
     })
     .then((res) => {
       console.log(res.data);
+      // this.setState({ isButtonDisabled: true })
     })
     .catch((err) => {
       console.log(err);
@@ -57,10 +73,12 @@ class SpringLeague extends Component {
   }
 
   render() {
+    let isButtonDisabled = this.state.isButtonDisabled;
+
     return (
       <Grid>
         <h3>Spring 2017 Tennis League</h3>
-        <Button onClick={this.joinLeague} bsStyle="primary" disabled>Join League</Button>
+        <Button onClick={this.joinLeague} bsStyle="primary" disabled={isButtonDisabled}>Join League</Button>
 
         <Table responsive striped condensed hover bordered>
           <thead>
