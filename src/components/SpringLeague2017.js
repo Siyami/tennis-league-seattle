@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
+import browserHistory from 'react-router';
 
 class SpringLeague extends Component {
   constructor(props) {
     super(props)
+    console.log(this.props);
 
     this.state = {
       playersInSpring2017: [],
@@ -27,12 +29,13 @@ class SpringLeague extends Component {
 
          // get loggedIn playerId from cookie that I created in token route
          const id = cookie.load('playerId');
+         console.log(id);
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {
            this.setState({ isButtonDisabled: true })
          }
-         
+
        })
 
      })
@@ -64,7 +67,8 @@ class SpringLeague extends Component {
     })
     .then((res) => {
       console.log(res.data);
-      // this.setState({ isButtonDisabled: true })
+      // this.setState({ playersInSpring2017: playersInSpring2017.concat(res) })
+      // browserHistory.push('/submitscore')
     })
     .catch((err) => {
       console.log(err);
@@ -100,6 +104,7 @@ class SpringLeague extends Component {
                 <tr>
                   <td>{`${player.firstName} ${player.lastName}`}</td>
                   <td>{this.state.scores.forEach((score) => {
+
                     // Check if player submitted any scores in this league
                     if (score.playerId === player.playerId) {
                       numOfMatches++;
@@ -110,7 +115,7 @@ class SpringLeague extends Component {
                         lost++;
                       }
                     }
-                  })}{`Won: ${won} Lost: ${lost}`}</td>
+                  })}{`Wins: ${won} Losses: ${lost}`}</td>
                   <td>{player.homeCourt}</td>
                   <td>{numOfMatches}</td>
                   <td>{player.email}</td>

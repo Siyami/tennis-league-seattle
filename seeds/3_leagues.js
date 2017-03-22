@@ -28,5 +28,10 @@ exports.seed = function(knex) {
           updated_at: new Date('2017-01-29 14:26:16 UTC')
         }
       ]);
+    })
+    .then(() => {
+      return knex.raw(
+        "SELECT setval('leagues_id_seq', (SELECT MAX(id) FROM leagues));"
+      );
     });
 };
