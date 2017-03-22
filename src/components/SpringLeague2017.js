@@ -68,7 +68,7 @@ class SpringLeague extends Component {
               <th>Player Name</th>
               <th>W/L</th>
               <th>Home Court</th>
-              <th>Total Matches Played</th>
+              <th>Total Matches</th>
               <th>Email</th>
             </tr>
             <div></div>

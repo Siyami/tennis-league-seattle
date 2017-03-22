@@ -31,8 +31,8 @@ class SearchCourts extends Component {
 
 	render(){
 		const location = {
-			lat: 47.6062,
-			lng: -122.24
+			lat: 47.548,
+			lng: -122.2
 		}
 
 		// you can manually include markers
@@ -59,7 +59,7 @@ class SearchCourts extends Component {
 				)} */}
 
 				<div>
-					<div style={{width:1110, height:600}}>
+					<div style={{width:345, height:500}}>
 						<Map center={location} markers={this.state.courts} />
 					</div>
 
