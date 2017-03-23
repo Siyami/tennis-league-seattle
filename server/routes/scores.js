@@ -8,6 +8,54 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+////////////
+// router.get('/players_leagues/:leagueId', (req, res, next) => {
+//   const leagueId = Number.parseInt(req.params.leagueId);
+//
+//   if (Number.isNaN(leagueId)) {
+//     return next();
+//   }
+//
+//   knex('players_leagues')
+//     .innerJoin('leagues', 'leagues.id', 'players_leagues.league_id')
+//     .innerJoin('players', 'players.id', 'players_leagues.player_id')
+//     // .innerJoin('scores', 'scores.player_id', 'players.id' )
+//     .where('leagues.id', leagueId)
+//     // .orderBy('leagues.starts_at')
+//     .then((rows) => {
+//       const playersLeagues = camelizeKeys(rows);
+//
+//       res.send(playersLeagues);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     })
+// })
+//////////
+
+router.get('/scores/:leagueId', (req, res, next) => {
+  const leagueId = Number.parseInt(req.params.leagueId);
+
+  if (Number.isNaN(leagueId)) {
+    return next();
+  }
+
+  knex('scores')
+    .innerJoin('leagues', 'leagues.id', 'scores.league_id')
+    .innerJoin('players', 'players.id', 'scores.player_id')
+    .where('leagues.id', leagueId)
+    .then((rows) => {
+      const scores = camelizeKeys(rows);
+
+      res.send(scores);
+    })
+    .catch((err) => {
+      next(err);
+    })
+
+})
+
+
 // router.get('/scores', (_req, res, next) => {
 //   knex('scores')
 //     .orderBy('id')
@@ -47,29 +95,8 @@ const router = express.Router();
 // });
 
 router.post('/scores', (req, res, next) => {
-  const { opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 } = req.body;
-
-  // if (!title || !title.trim()) {
-  //   return next(boom.create(400, 'Title must not be blank'));
-  // }
-  //
-  // if (!author || !author.trim()) {
-  //   return next(boom.create(400, 'Author must not be blank'));
-  // }
-  //
-  // if (!genre || !genre.trim()) {
-  //   return next(boom.create(400, 'Genre must not be blank'));
-  // }
-  //
-  // if (!description || !description.trim()) {
-  //   return next(boom.create(400, 'Description must not be blank'));
-  // }
-  //
-  // if (!coverUrl || !coverUrl.trim()) {
-  //   return next(boom.create(400, 'Cover URL must not be blank'));
-  // }
-
-  const insertScore = { player_id:req.claim.playerId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 };
+  const { leagueId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 } = req.body;
+  const insertScore = { leagueId, playerId: req.claim.playerId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 };
 
   knex('scores')
     .insert(decamelizeKeys(insertScore), '*')

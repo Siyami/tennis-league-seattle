@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
-import browserHistory from 'react-router';
+// import browserHistory from 'react-router';
 
 class SpringLeague extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
 
     this.state = {
       playersInSpring2017: [],
@@ -44,20 +43,45 @@ class SpringLeague extends Component {
      })
 
      // Get all player scores
-     axios.get('/api/combined_scores')
-       .then((res) => {
-         console.log(res.data);
-         this.setState({
-           scores: res.data
-         })
-       })
-       .catch((err) => {
-         console.log(err);
-       })
+    axios.get('/api/combined_scores')
+      .then((res) => {
+        // console.log(res.data);
+        this.setState({
+         scores: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+
+       ///////// /////////////////////
+
+    axios.get('/api/scores/1')
+    .then((res) => {
+      console.log(res.data);
+      // this.setState({ playersInSpring2017: res.data })
+
+      // this.state.playersInSpring2017.forEach((player) => {
+      //
+      //   // get loggedIn playerId from cookie that I created in token route
+      //   const id = cookie.load('playerId');
+      //   console.log(id);
+      //
+      //   // if logged in players id is in players_leagues table then disable join league button
+      //   if (player.playerId == id) {
+      //     this.setState({ isButtonDisabled: true })
+      //   }
+      //
+      // })
+
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   joinLeague() {
-
     axios({
       method: 'post',
       url: '/api/players_leagues',
@@ -73,11 +97,36 @@ class SpringLeague extends Component {
     .catch((err) => {
       console.log(err);
     })
-
   }
 
   render() {
     let isButtonDisabled = this.state.isButtonDisabled;
+
+    // let won = 0;
+    // let lost = 0;
+    // let numOfMatches = 0;
+    //
+    // this.state.playersInSpring2017.forEach((player) => {
+    //   // player.ratio = won/numOfMatches;
+    //
+    //   this.state.scores.forEach((score) => {
+    //
+    //     // Check if player submitted any scores in this league
+    //     if (score.playerId === player.playerId) {
+    //       numOfMatches++;
+    //       if(score.result === 'Won') {
+    //         won++;
+    //       }
+    //       else if (score.result === 'Lost') {
+    //         lost++;
+    //       }
+    //     }
+    //   })
+    // })
+    //
+    // console.log(`Won: ${won}`);
+    // console.log(`Lost: ${lost}`);
+    // console.log(`Total Matches: ${numOfMatches}`);
 
     return (
       <Grid>
@@ -125,6 +174,7 @@ class SpringLeague extends Component {
             })}
           </tbody>
         </Table>
+
       </Grid>
     )
   }

@@ -9,6 +9,12 @@ exports.up = function(knex) {
       .inTable('players')
       .onDelete('CASCADE')
       .index();
+    table.integer('league_id')
+      .notNullable()
+      .references('id')
+      .inTable('leagues')
+      .onDelete('CASCADE')
+      .index();
     table.string('opponent').notNullable().defaultTo('');
     table.string('result').notNullable().defaultTo('');
     table.string('first_set1').notNullable().defaultTo('');

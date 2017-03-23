@@ -70,7 +70,8 @@ class SubmitScore extends Component {
         secondSet2: this.state.secondSet2,
         tieBreak1: this.state.tieBreak1,
         tieBreak2: this.state.tieBreak2,
-        scoreDate: this.state.scoreDate
+        scoreDate: this.state.scoreDate,
+        leagueId: 1
       }
     })
     .then((res) => {
