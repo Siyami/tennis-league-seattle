@@ -5,26 +5,27 @@ class Home extends Component {
   render() {
     return (
       <Grid>
+        {/* <h5>Welcome to TennisSeattle where you can join tennis leagues, play matches and meet new people</h5> */}
         <Carousel>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis5.jpg"/>
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3>Welcome to TennisSeattle</h3>
+              {/* <p></p> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis1.jpg"/>
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              {/* <h3></h3>
+              <p></p> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis3.jpg"/>
             <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              {/* <h3></h3>
+              <p></p> */}
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
