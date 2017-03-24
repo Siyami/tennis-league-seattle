@@ -48,7 +48,7 @@ class SpringLeague extends Component {
 /////////////////////////////////////////////
   // axios.get('/api/scores/1')
   //   .then((res) => {
-  //     console.log(res.data);
+  //     // console.log(res.data);
   //     this.setState({ unSortedPlayersAndScores: res.data })
   //
   //     this.state.unSortedPlayersAndScores.forEach((player) => {
@@ -78,19 +78,20 @@ class SpringLeague extends Component {
   //       newObj.homeCourt = player.homeCourt;
   //       const newArr = [];
   //       newArr.push(newObj);
-        // const arr = this.dedupe(newArr);
-        // console.log(arr);
-        // console.log(newObj);
-        // this.setState({unSortedPlayersAndScores: newArr});
-
-    //
-    //   })
-    //   // console.log(this.state.unSortedPlayersAndScores);
-    //
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // })
+  //       // console.log(newObj);
+  //       console.log(newArr);
+  //       const arr = this.dedupe(newArr);
+  //       // console.log(arr);
+  //       this.setState({unSortedPlayersAndScores: newArr});
+  //
+  //
+  //     })
+  //     // console.log(this.state.unSortedPlayersAndScores);
+  //
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
   }
 
   componentDidMount() {
@@ -103,7 +104,7 @@ class SpringLeague extends Component {
 
          // get loggedIn playerId from cookie that I created in token route
          const id = cookie.load('playerId');
-         console.log(id);
+        //  console.log(id);
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {

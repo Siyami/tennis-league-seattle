@@ -22,6 +22,7 @@ router.get('/players_leagues/:leagueId', (req, res, next) => {
     // .innerJoin('scores', 'scores.player_id', 'players.id' )
     .where('leagues.id', leagueId)
     // .orderBy('leagues.starts_at')
+    .orderBy('players_leagues.created_at')
     .then((rows) => {
       const playersLeagues = camelizeKeys(rows);
 
