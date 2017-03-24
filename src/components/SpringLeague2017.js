@@ -10,7 +10,8 @@ class SpringLeague extends Component {
 
     this.state = {
       playersInSpring2017: [],
-      scores: [],
+      // scores: [],
+      unSortedPlayersAndScores: [],
       isButtonDisabled: false
     }
 
@@ -18,7 +19,81 @@ class SpringLeague extends Component {
 
   }
 
+  // dedupe(arr) {
+  //   return arr.reduce(function (p, c) {
+  //     var key = [c.x, c.y].join('|');
+  //     if (p.temp.indexOf(key) === -1) {
+  //       p.out.push(c);
+  //       p.temp.push(key);
+  //     }
+  //     return p;
+  //   }, { temp: [], out: [] }).out;
+  // }
+
   componentWillMount() {
+
+
+    //  Get all player scores
+    axios.get('/api/combined_scores')
+      .then((res) => {
+        // console.log(res.data);
+        this.setState({
+         scores: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+/////////////////////////////////////////////
+  // axios.get('/api/scores/1')
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     this.setState({ unSortedPlayersAndScores: res.data })
+  //
+  //     this.state.unSortedPlayersAndScores.forEach((player) => {
+  //       let won = 0;
+  //       let lost = 0;
+  //       let numOfMatches = 0;
+  //       const newObj = {};
+  //
+  //       this.state.unSortedPlayersAndScores.forEach((user) => {
+  //         if(player.id === user.id) {
+  //
+  //           numOfMatches++;
+  //           if(user.result === 'Won') {
+  //             won++;
+  //           }
+  //           else if (user.result === 'Lost') {
+  //             lost++;
+  //           }
+  //
+  //         }
+  //       })
+  //       newObj.firstName = player.firstName;
+  //       newObj.lastName = player.lastName;
+  //       newObj.wins = won;
+  //       newObj.losses = lost;
+  //       newObj.numOfMatches = numOfMatches;
+  //       newObj.homeCourt = player.homeCourt;
+  //       const newArr = [];
+  //       newArr.push(newObj);
+        // const arr = this.dedupe(newArr);
+        // console.log(arr);
+        // console.log(newObj);
+        // this.setState({unSortedPlayersAndScores: newArr});
+
+    //
+    //   })
+    //   // console.log(this.state.unSortedPlayersAndScores);
+    //
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
+  }
+
+  componentDidMount() {
     axios.get('/api/players_leagues/1')
      .then((res) => {
        console.log(res.data);
@@ -41,44 +116,6 @@ class SpringLeague extends Component {
      .catch((err) => {
        console.log(err);
      })
-
-     // Get all player scores
-    axios.get('/api/combined_scores')
-      .then((res) => {
-        // console.log(res.data);
-        this.setState({
-         scores: res.data
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-
-
-       ///////// /////////////////////
-
-    axios.get('/api/scores/1')
-    .then((res) => {
-      console.log(res.data);
-      // this.setState({ playersInSpring2017: res.data })
-
-      // this.state.playersInSpring2017.forEach((player) => {
-      //
-      //   // get loggedIn playerId from cookie that I created in token route
-      //   const id = cookie.load('playerId');
-      //   console.log(id);
-      //
-      //   // if logged in players id is in players_leagues table then disable join league button
-      //   if (player.playerId == id) {
-      //     this.setState({ isButtonDisabled: true })
-      //   }
-      //
-      // })
-
-    })
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   joinLeague() {
@@ -90,8 +127,7 @@ class SpringLeague extends Component {
       }
     })
     .then((res) => {
-      console.log(res.data);
-      // this.setState({ playersInSpring2017: playersInSpring2017.concat(res) })
+      // console.log(res.data);
       // browserHistory.push('/submitscore')
     })
     .catch((err) => {
@@ -142,14 +178,12 @@ class SpringLeague extends Component {
               <th>Total Matches</th>
               <th>Email</th>
             </tr>
-            <div></div>
           </thead>
           <tbody>
             {this.state.playersInSpring2017.map((player) => {
               let won = 0;
               let lost = 0;
               let numOfMatches = 0;
-              // player.ratio = won/numOfMatches;
               return (
                 <tr>
                   <td>{`${player.firstName} ${player.lastName}`}</td>

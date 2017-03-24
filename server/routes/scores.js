@@ -41,6 +41,7 @@ router.get('/scores/:leagueId', (req, res, next) => {
   }
 
   knex('scores')
+    .select('players.id', 'players.first_name', 'players.last_name', 'players.home_court', 'scores.result' )
     .innerJoin('leagues', 'leagues.id', 'scores.league_id')
     .innerJoin('players', 'players.id', 'scores.player_id')
     .where('leagues.id', leagueId)
