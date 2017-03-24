@@ -31,23 +31,31 @@ router.post('/token', (req, res, next) => {
 
       res.cookie('token', token, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // lives 7 days
         secure: router.get('env') === 'production'
       });
 
       // Create new cookies for First Name, Last Name and playerId
       res.cookie('playerFirstName', player.firstName, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         secure: router.get('env') === 'production'
       });
       res.cookie('playerLastName', player.lastName, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         secure: router.get('env') === 'production'
       });
       res.cookie('playerId', player.id, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),  // 7 days
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         secure: router.get('env') === 'production'
       });
+      res.cookie('playerHomeCourt', player.homeCourt, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
+      res.cookie('playerEmail', player.email, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
 
       delete player.hashedPassword;
 
@@ -76,6 +84,8 @@ router.delete('/token', (req, res) => {
   res.clearCookie('playerFirstName');
   res.clearCookie('playerLastName');
   res.clearCookie('playerId');
+  res.clearCookie('playerHomeCourt');
+  res.clearCookie('playerEmail');
   res.end();
 });
 

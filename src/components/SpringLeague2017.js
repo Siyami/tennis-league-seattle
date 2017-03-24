@@ -32,7 +32,6 @@ class SpringLeague extends Component {
 
   componentWillMount() {
 
-
     //  Get all player scores
     axios.get('/api/combined_scores')
       .then((res) => {
@@ -95,6 +94,7 @@ class SpringLeague extends Component {
   }
 
   componentDidMount() {
+
     axios.get('/api/players_leagues/1')
      .then((res) => {
        console.log(res.data);
@@ -120,6 +120,21 @@ class SpringLeague extends Component {
   }
 
   joinLeague() {
+    const firstName = cookie.load('playerFirstName');
+    const lastName = cookie.load('playerLastName');
+    const homeCourt = cookie.load('playerHomeCourt');
+    const email = cookie.load('playerEmail');
+
+    this.setState({
+      playersInSpring2017: this.state.playersInSpring2017.concat(
+        [{
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          homeCourt: homeCourt
+        }]
+      )})
+
     axios({
       method: 'post',
       url: '/api/players_leagues',
