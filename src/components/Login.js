@@ -101,7 +101,7 @@ class Login extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Button style={{width: "50%"}}bsSize="large" bsStyle="warning" type="submit">
+                  <Button bsStyle="primary" type="submit">
                     Log in
                   </Button>
                 </FormGroup>

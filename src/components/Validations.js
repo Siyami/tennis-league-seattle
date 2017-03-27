@@ -59,5 +59,4 @@ Object.assign(Validation.rules, {
         hint: () => <span className="form-error is-visible">Passwords must match.</span>
     }
 
-
 });
