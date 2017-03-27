@@ -120,6 +120,31 @@ class SpringLeague extends Component {
   }
 
   joinLeague() {
+    // var nodemailer = require("nodemailer");
+    //
+    // var smtpTransport = nodemailer.createTransport("SMTP",{
+    //    service: "Gmail",  // sets automatically host, port and connection security settings
+    //    auth: {
+    //        user: "siyami.avci@gmail.com",
+    //        pass: "enter password"
+    //    }
+    // });
+    //
+    // smtpTransport.sendMail({  //email options
+    //    from: "Siyami <siyami.avci@gmail.com>", // sender address.  Must be the same as authenticated user if using Gmail.
+    //    to: "Siyami <siyami.avci@gmail.com>", // receiver
+    //    subject: "Emailing with nodemailer", // subject
+    //    text: "Email Example with nodemailer" // body
+    // }, function(error, response){  //callback
+    //    if(error){
+    //        console.log(error);
+    //    }else{
+    //        console.log("Message sent: " + response.message);
+    //    }
+    //
+    //    smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    // });
+
     const firstName = cookie.load('playerFirstName');
     const lastName = cookie.load('playerLastName');
     const homeCourt = cookie.load('playerHomeCourt');
