@@ -36,6 +36,7 @@ app.use('/api', authorize, require('./routes/scores'));
 app.use('/api', authorize, require('./routes/combined_scores'));
 app.use('/api', require('./routes/leagues'));
 app.use('/api', require('./routes/players_leagues'));
+app.use('/api', require('./routes/emails'));
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 

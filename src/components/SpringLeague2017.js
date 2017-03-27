@@ -120,35 +120,26 @@ class SpringLeague extends Component {
   }
 
   joinLeague() {
-    // var nodemailer = require("nodemailer");
-    //
-    // var smtpTransport = nodemailer.createTransport("SMTP",{
-    //    service: "Gmail",  // sets automatically host, port and connection security settings
-    //    auth: {
-    //        user: "siyami.avci@gmail.com",
-    //        pass: "enter password"
-    //    }
-    // });
-    //
-    // smtpTransport.sendMail({  //email options
-    //    from: "Siyami <siyami.avci@gmail.com>", // sender address.  Must be the same as authenticated user if using Gmail.
-    //    to: "Siyami <siyami.avci@gmail.com>", // receiver
-    //    subject: "Emailing with nodemailer", // subject
-    //    text: "Email Example with nodemailer" // body
-    // }, function(error, response){  //callback
-    //    if(error){
-    //        console.log(error);
-    //    }else{
-    //        console.log("Message sent: " + response.message);
-    //    }
-    //
-    //    smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
-    // });
-
     const firstName = cookie.load('playerFirstName');
+    const email = cookie.load('playerEmail');
     const lastName = cookie.load('playerLastName');
     const homeCourt = cookie.load('playerHomeCourt');
-    const email = cookie.load('playerEmail');
+
+    this.setState({ isButtonDisabled: true })
+
+    // Send welcome email when player joins the league
+    axios.post('/api/emails', {
+      playerEmail: `${email}`,
+      playerFirstName: `${firstName}`,
+      // text: 'Thanks!',
+      html: '<h2>Thanks for joining Spring League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 
     this.setState({
       playersInSpring2017: this.state.playersInSpring2017.concat(

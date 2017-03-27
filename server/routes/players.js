@@ -91,10 +91,27 @@ router.post('/players', (req, res, next) => {
         secure: router.get('env') === 'production'
       });
 
-      // Create new cookie for Player First Name, Last Name and Id
-      res.cookie('playerFirstName', player.firstName);
-      res.cookie('playerLastName', player.lastName);
-      res.cookie('playerId', player.id);
+      // Create new cookies for First Name, Last Name and playerId
+      res.cookie('playerFirstName', player.firstName, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      });
+      res.cookie('playerLastName', player.lastName, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      });
+      res.cookie('playerId', player.id, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      });
+      res.cookie('playerHomeCourt', player.homeCourt, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
+      res.cookie('playerEmail', player.email, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
 
       delete player.hashedPassword;
 

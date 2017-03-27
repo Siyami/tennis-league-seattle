@@ -13,7 +13,6 @@
     "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.7",
     "morgan": "^1.8.1",
-    "nodemailer": "0.3.29",
     "pg": "^6.1.4",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
