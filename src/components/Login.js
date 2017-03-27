@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Row,Grid, Form, FormGroup, Col, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import Validation from 'react-validation';
+import './Validations';
 
 class Login extends Component {
   constructor(props) {
@@ -9,7 +11,8 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: {}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -67,45 +70,45 @@ class Login extends Component {
   render() {
     return (
       <Grid>
-        <Row>
-          <Col xs={6} xsOffset={3}>
-            <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%"}}>
-
-              <FormGroup controlId="formHorizontalEmail">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Email
-                </Col> */}
-                <FormControl
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-              </FormGroup>
-
-              <FormGroup controlId="formHorizontalPassword">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Password
-                </Col> */}
-                <FormControl
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Button style={{width: "50%"}}bsSize="large" bsStyle="warning" type="submit">
-                  Log in
-                </Button>
-              </FormGroup>
-
-            </Form>
-          </Col>
-        </Row>
+        <Validation.components.Form>
+          <Row>
+            <Col xs={6} xsOffset={3}>
+              <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%"}}>
+                <FormGroup controlId="formHorizontalEmail">
+                  {/* <Col componentClass={ControlLabel} sm={2}>
+                    Email
+                  </Col> */}
+                  <Validation.components.Input
+                    validations={['required', 'email']}
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                </FormGroup>
+                <FormGroup controlId="formHorizontalPassword">
+                  {/* <Col componentClass={ControlLabel} sm={2}>
+                    Password
+                  </Col> */}
+                  <Validation.components.Input
+                    validations={['required', 'passwordLength']}
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Button style={{width: "50%"}}bsSize="large" bsStyle="warning" type="submit">
+                    Log in
+                  </Button>
+                </FormGroup>
+              </Form>
+            </Col>
+          </Row>
+        </Validation.components.Form>
       </Grid>
     )
   }
