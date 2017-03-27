@@ -158,7 +158,7 @@ class SignUp extends Component {
               </FormGroup>
 
               <FormGroup>
-                  <Button style={{width: "50%"}}bsSize="large" bsStyle="warning" type="submit">
+                  <Button style={{width: "50%"}} bsSize="large" bsStyle="warning" type="submit">
                     Sign Up
                   </Button>
               </FormGroup>
