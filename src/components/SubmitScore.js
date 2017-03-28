@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, FormGroup, ControlLabel, FormControl, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
 
 class SubmitScore extends Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class SubmitScore extends Component {
     .then((res) => {
       // this.props.setStateFromLoginComponent()
       console.log(res.data);
-      // browserHistory.push('/')
+      browserHistory.push('/viewscores')
     })
     .catch((err) => {
       console.log(err);
