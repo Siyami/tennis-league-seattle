@@ -5,6 +5,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const knex = require('../../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
+const nodemailer = require('nodemailer');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -12,32 +13,31 @@ const router = express.Router();
 router.post('/emails', (req, res, next) => {
   const { playerEmail, playerFirstName, text, html } = req.body;
 
-  const nodemailer = require("nodemailer");
-
-  const smtpTransport = nodemailer.createTransport({
-    service: "Gmail",  // sets automatically host, port and connection security settings
-    auth: {
-      user: `${process.env.userName}`,
-      pass: `${process.env.password}`
-    }
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: `${process.env.userName}`,
+        pass: `${process.env.password}`
+      }
   });
 
-  smtpTransport.sendMail({  //email options
-     from: "Admin <tennisleagueseattle@gmail.com>", // sender address.  Must be the same as authenticated user if using Gmail.
-     to: `<${playerEmail}`, // receiver
-     subject: "Tennis League Seattle", // subject
-     text: `${text}`, // body
-     html: `${html}`
-  }, (error, response) => {  //callback
-       if(error) {
-           console.log(error);
-       } else {
-           console.log("Message sent: " + response.message);
-       }
+  // setup email data with unicode symbols
+  let mailOptions = {
+      from: '"Admin" <tennisleagueseattle@gmail.com>', // sender address
+      to: `<${playerEmail}`, // list of receivers
+      subject: 'Tennis League Seattle', // Subject line
+      text: `${text}`, // body
+      html: `${html}`
+  };
 
-       smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
-    });
-
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message %s sent: %s', info.messageId, info.response);
+  });
 });
 
 module.exports = router;

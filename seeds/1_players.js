@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
           id: 1,
           first_name: 'Siyami',
           last_name: 'Avci',
-          email: 'siyami@gmail.com',
+          email: 'siyami.avci@gmail.com',
           hashed_password: '$2a$12$OyrPPu1MZZAowBhHuuBRfeBBsXpCsrTFbWlWPHjgDEUpQamVSa4vC',
           ntrp_rating: '3.5',
           home_court: 'Redmond - GrassLawn',
