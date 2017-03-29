@@ -80,8 +80,9 @@ class SubmitScore extends Component {
     return (
       <Grid>
 
-        <Form onSubmit={this.handleSubmit} style={{margin: "10% 20%"}}>
-          <h4>{`${this.state.loggedInPlayerFirstName}  ${this.state.loggedInPlayerLastName} vs`}</h4>
+        <Form onSubmit={this.handleSubmit} style={{margin: "5% 20%"}}>
+          <h4>Please Submit Your Scores For Spring League</h4>
+          <h4>{`${this.state.loggedInPlayerFirstName}  ${this.state.loggedInPlayerLastName} vs.`}</h4>
 
           <FormGroup controlId="formControlsSelect">
             {/* <ControlLabel>Select</ControlLabel> */}
@@ -206,7 +207,7 @@ class SubmitScore extends Component {
             />
           </FormGroup>
 
-          <Button type="submit">
+          <Button type="submit" bsStyle="primary">
             Submit Score
           </Button>
 

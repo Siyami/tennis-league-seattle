@@ -14,7 +14,6 @@ class ViewScores extends Component {
   componentWillMount() {
     axios.get('/api/combined_scores')
       .then((res) => {
-        console.log(res.data);
         this.setState({
           scores: res.data
         })
@@ -36,7 +35,6 @@ class ViewScores extends Component {
               <th>Score</th>
               <th>Date</th>
             </tr>
-            <div></div>
           </thead>
           <tbody>
             {this.state.scores.map((score) => {

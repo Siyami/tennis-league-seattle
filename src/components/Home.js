@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Carousel, Jumbotron, Button } from 'react-bootstrap';
+import { Grid, Carousel, Jumbotron } from 'react-bootstrap';
 
 class Home extends Component {
   render() {
@@ -12,7 +12,6 @@ class Home extends Component {
             <li>Play matches</li>
             <li>Meet new people!</li>
           </ul>
-          <p><Button bsStyle="primary">Learn more</Button></p>
         </Jumbotron>
 
         <Carousel>
@@ -20,7 +19,6 @@ class Home extends Component {
             <img width={900} height={500} alt="900x500" src="tennis5.jpg"/>
             <Carousel.Caption>
               <h3>Welcome to TennisSeattle</h3>
-              {/* <p></p> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>

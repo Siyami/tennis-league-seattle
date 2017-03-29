@@ -24,7 +24,6 @@ class Profile extends Component {
        this.setState({
          player: res.data
        })
-       console.log(this.state.player);
      })
      .catch((err) => {
        console.log(err);
@@ -33,7 +32,6 @@ class Profile extends Component {
      // Get loggedIn player's scores
      axios.get(`/api/combined_scores/${playerId}`)
       .then((res) => {
-        console.log(res.data);
         this.setState({playerScores: res.data})
       })
       .catch((err) => {
