@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import '../App.css';
-// import axios from 'axios';
 import {  } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
@@ -13,15 +11,11 @@ class App extends Component {
 
 		this.state = {
 			isLoggedIn: false
-
 		}
-
 		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
 		this.logOut = this.logOut.bind(this);
-
 	}
 
-	// Move get request token inside the constructor
 	componentWillMount () {
 		axios.get('/api/token')
 			.then((res) => {
@@ -33,7 +27,6 @@ class App extends Component {
 	}
 
 	setStateFromLoginComponent(loggedInPlayerFirstName, loggedInPlayerLastName) {
-		// console.log(loggedInPlayerFirstName + currentPlayerLastName);
 		this.setState({
 			isLoggedIn: true,
 		})

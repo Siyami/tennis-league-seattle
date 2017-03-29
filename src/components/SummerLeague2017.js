@@ -78,8 +78,7 @@ class SummerLeague extends Component {
       }
     })
     .then((res) => {
-      // console.log(res.data);
-      // browserHistory.push('/submitscore')
+      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);

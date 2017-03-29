@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import logo from './logo.svg';
 import Map from './Map'
 import Courts from './Courts'
 import axios from 'axios'
@@ -53,11 +52,6 @@ class SearchCourts extends Component {
 
 		return (
 			<Grid>
-
-				{/* {React.cloneElement(
-					this.props.children
-				)} */}
-
 				<div style={{ width: "100%", marginLeft: 0 }}>
 					<div style={{
 							height: 500,
@@ -68,10 +62,8 @@ class SearchCourts extends Component {
 							padding: 0 }}>
 						<Map center={location} markers={this.state.courts} />
 					</div>
-
 					<Courts courts={this.state.courts} />
 				</div>
-
 			</Grid>
 		)
 	}

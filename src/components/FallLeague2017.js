@@ -29,9 +29,7 @@ class FallLeague extends Component {
          if (player.playerId == id) {
            this.setState({ isButtonDisabled: true })
          }
-
        })
-
      })
      .catch((err) => {
        console.log(err);
@@ -50,7 +48,6 @@ class FallLeague extends Component {
     axios.post('/api/emails', {
       playerEmail: `${email}`,
       playerFirstName: `${firstName}`,
-      // text: 'Thanks!',
       html: '<h2>Thanks for joining Fall League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
     })
     .then((res) => {
@@ -78,8 +75,7 @@ class FallLeague extends Component {
       }
     })
     .then((res) => {
-      // console.log(res.data);
-      // browserHistory.push('/submitscore')
+      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -119,7 +115,6 @@ class FallLeague extends Component {
             })}
           </tbody>
         </Table>
-
       </Grid>
     )
   }

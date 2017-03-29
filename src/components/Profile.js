@@ -3,8 +3,6 @@ import axios from 'axios';
 import cookie from 'react-cookie';
 import { Grid, Row, Col, Thumbnail, Table } from 'react-bootstrap';
 
-// console.log(window);
-// const playerId = window.QUERY_PARAMETERS.id;
 class Profile extends Component {
   constructor(props) {
     super(props)
@@ -54,10 +52,6 @@ class Profile extends Component {
               <p>Email: {this.state.player.email}</p>
               <p>Ntrp Level: {this.state.player.ntrpRating}</p>
               <p>Home Court: {this.state.player.homeCourt}</p>
-              {/* <p>
-                <Button bsStyle="primary">Button</Button>&nbsp;
-                <Button bsStyle="default">Button</Button>
-              </p> */}
             </Thumbnail>
           </Col>
         </Row>

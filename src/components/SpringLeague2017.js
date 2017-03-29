@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
-// import browserHistory from 'react-router';
 
 class SpringLeague extends Component {
   constructor(props) {
@@ -10,32 +9,16 @@ class SpringLeague extends Component {
 
     this.state = {
       playersInSpring2017: [],
-      // scores: [],
       unSortedPlayersAndScores: [],
       isButtonDisabled: false
     }
-
     this.joinLeague = this.joinLeague.bind(this);
-
   }
 
-  // dedupe(arr) {
-  //   return arr.reduce(function (p, c) {
-  //     var key = [c.x, c.y].join('|');
-  //     if (p.temp.indexOf(key) === -1) {
-  //       p.out.push(c);
-  //       p.temp.push(key);
-  //     }
-  //     return p;
-  //   }, { temp: [], out: [] }).out;
-  // }
-
   componentWillMount() {
-
     //  Get all player scores
     axios.get('/api/combined_scores')
       .then((res) => {
-        // console.log(res.data);
         this.setState({
          scores: res.data
         })
@@ -43,58 +26,9 @@ class SpringLeague extends Component {
       .catch((err) => {
         console.log(err);
       })
-
-/////////////////////////////////////////////
-  // axios.get('/api/scores/1')
-  //   .then((res) => {
-  //     // console.log(res.data);
-  //     this.setState({ unSortedPlayersAndScores: res.data })
-  //
-  //     this.state.unSortedPlayersAndScores.forEach((player) => {
-  //       let won = 0;
-  //       let lost = 0;
-  //       let numOfMatches = 0;
-  //       const newObj = {};
-  //
-  //       this.state.unSortedPlayersAndScores.forEach((user) => {
-  //         if(player.id === user.id) {
-  //
-  //           numOfMatches++;
-  //           if(user.result === 'Won') {
-  //             won++;
-  //           }
-  //           else if (user.result === 'Lost') {
-  //             lost++;
-  //           }
-  //
-  //         }
-  //       })
-  //       newObj.firstName = player.firstName;
-  //       newObj.lastName = player.lastName;
-  //       newObj.wins = won;
-  //       newObj.losses = lost;
-  //       newObj.numOfMatches = numOfMatches;
-  //       newObj.homeCourt = player.homeCourt;
-  //       const newArr = [];
-  //       newArr.push(newObj);
-  //       // console.log(newObj);
-  //       console.log(newArr);
-  //       const arr = this.dedupe(newArr);
-  //       // console.log(arr);
-  //       this.setState({unSortedPlayersAndScores: newArr});
-  //
-  //
-  //     })
-  //     // console.log(this.state.unSortedPlayersAndScores);
-  //
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
   }
 
   componentDidMount() {
-
     axios.get('/api/players_leagues/1')
      .then((res) => {
        this.setState({ playersInSpring2017: res.data })
@@ -103,15 +37,12 @@ class SpringLeague extends Component {
 
          // get loggedIn playerId from cookie that I created in token route
          const id = cookie.load('playerId');
-        //  console.log(id);
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {
            this.setState({ isButtonDisabled: true })
          }
-
        })
-
      })
      .catch((err) => {
        console.log(err);
@@ -130,7 +61,6 @@ class SpringLeague extends Component {
     axios.post('/api/emails', {
       playerEmail: `${email}`,
       playerFirstName: `${firstName}`,
-      // text: 'Thanks!',
       html: '<h2>Thanks for joining Spring League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
     })
     .then((res) => {
@@ -158,8 +88,7 @@ class SpringLeague extends Component {
       }
     })
     .then((res) => {
-      // console.log(res.data);
-      // browserHistory.push('/submitscore')
+      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -168,32 +97,6 @@ class SpringLeague extends Component {
 
   render() {
     let isButtonDisabled = this.state.isButtonDisabled;
-
-    // let won = 0;
-    // let lost = 0;
-    // let numOfMatches = 0;
-    //
-    // this.state.playersInSpring2017.forEach((player) => {
-    //   // player.ratio = won/numOfMatches;
-    //
-    //   this.state.scores.forEach((score) => {
-    //
-    //     // Check if player submitted any scores in this league
-    //     if (score.playerId === player.playerId) {
-    //       numOfMatches++;
-    //       if(score.result === 'Won') {
-    //         won++;
-    //       }
-    //       else if (score.result === 'Lost') {
-    //         lost++;
-    //       }
-    //     }
-    //   })
-    // })
-    //
-    // console.log(`Won: ${won}`);
-    // console.log(`Lost: ${lost}`);
-    // console.log(`Total Matches: ${numOfMatches}`);
 
     return (
       <Grid>
@@ -245,7 +148,6 @@ class SpringLeague extends Component {
       </Grid>
     )
   }
-
 }
 
 export default SpringLeague;

@@ -20,17 +20,14 @@ class SubmitScore extends Component {
       tieBreak2: '',
       loggedInPlayerFirstName: '',
       loggedInPlayerLastName: ''
-
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   componentWillMount() {
     axios.get('/api/players')
       .then((res) => {
-        // console.log(res.data);
         this.setState({
           opponents: res.data
         })
@@ -38,21 +35,16 @@ class SubmitScore extends Component {
       .catch((err) => {
         console.log(err);
       });
-
       this.setState({
         loggedInPlayerFirstName: cookie.load('playerFirstName'),
         loggedInPlayerLastName: cookie.load('playerLastName')
       })
-
   }
 
   handleChange(event) {
     const nextState = {
       [event.target.name]: event.target.value
     };
-
-    console.log(nextState);
-
     this.setState(nextState);
   }
 
@@ -76,7 +68,6 @@ class SubmitScore extends Component {
       }
     })
     .then((res) => {
-      // this.props.setStateFromLoginComponent()
       console.log(res.data);
       browserHistory.push('/viewscores')
     })

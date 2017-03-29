@@ -12,7 +12,6 @@ class Home extends Component {
             <li>Play matches</li>
             <li>Meet new people!</li>
           </ul>
-          {/* <p>Welcome to TennisSeattle where you can join tennis leagues, play matches and meet new people!</p> */}
           <p><Button bsStyle="primary">Learn more</Button></p>
         </Jumbotron>
 
