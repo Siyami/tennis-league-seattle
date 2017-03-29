@@ -97,7 +97,6 @@ class SpringLeague extends Component {
 
     axios.get('/api/players_leagues/1')
      .then((res) => {
-       console.log(res.data);
        this.setState({ playersInSpring2017: res.data })
 
        this.state.playersInSpring2017.forEach((player) => {
@@ -217,7 +216,7 @@ class SpringLeague extends Component {
               let lost = 0;
               let numOfMatches = 0;
               return (
-                <tr>
+                <tr key={player.email}>
                   <td>{`${player.firstName} ${player.lastName}`}</td>
                   <td>{this.state.scores.forEach((score) => {
 

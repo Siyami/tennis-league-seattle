@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row,Grid, Form, FormGroup, Col, FormControl, Button } from 'react-bootstrap';
+import { Row,Grid, Form, FormGroup, Col, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import Validation from 'react-validation';

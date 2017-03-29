@@ -10,11 +10,11 @@ import SignUp from './SignUp';
 import ViewScores from './ViewScores';
 import Profile from './Profile';
 import SpringLeague2017 from './SpringLeague2017';
+import SummerLeague2017 from './SummerLeague2017';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-
     <Route path="/courts" component={SearchCourts} />
     <Route path="/submitscore" component={SubmitScore} />
     <Route path="/login" component={Login} />
@@ -22,5 +22,6 @@ export default (
     <Route path="/viewscores" component={ViewScores} />
     <Route path="/profile" component={Profile} />
     <Route path="/SpringLeague2017" component={SpringLeague2017} />
+    <Route path="/SummerLeague2017" component={SummerLeague2017} />
   </Route>
 );
