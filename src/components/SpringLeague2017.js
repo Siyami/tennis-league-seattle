@@ -61,7 +61,7 @@ class SpringLeague extends Component {
     axios.post('/api/emails', {
       playerEmail: `${email}`,
       playerFirstName: `${firstName}`,
-      html: '<h2>Thanks for joining Spring League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
+      html: '<h2>Thanks for joining Spring League 2017</h2><p>League started on March 20th, 2017</p><p>League is going to end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
     })
     .then((res) => {
       console.log(res);

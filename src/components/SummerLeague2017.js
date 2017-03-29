@@ -51,7 +51,7 @@ class SummerLeague extends Component {
       playerEmail: `${email}`,
       playerFirstName: `${firstName}`,
       // text: 'Thanks!',
-      html: '<h2>Thanks for joining Summer League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
+      html: '<h2>Thanks for joining Summer League 2017</h2><p>League starts on 6/5/2017</p><p>League ends on 8/20/2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
     })
     .then((res) => {
       console.log(res);
