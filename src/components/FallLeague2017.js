@@ -3,12 +3,12 @@ import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
 
-class SummerLeague extends Component {
+class FallLeague extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      playersInSummer2017: [],
+      playersInFall2017: [],
       unSortedPlayersAndScores: [],
       isButtonDisabled: false
     }
@@ -16,11 +16,11 @@ class SummerLeague extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/players_leagues/2')
+    axios.get('/api/players_leagues/3')
      .then((res) => {
-       this.setState({ playersInSummer2017: res.data })
+       this.setState({ playersInFall2017: res.data })
 
-       this.state.playersInSummer2017.forEach((player) => {
+       this.state.playersInFall2017.forEach((player) => {
 
          // get loggedIn playerId from cookie that I created in token route
          const id = cookie.load('playerId');
@@ -51,7 +51,7 @@ class SummerLeague extends Component {
       playerEmail: `${email}`,
       playerFirstName: `${firstName}`,
       // text: 'Thanks!',
-      html: '<h2>Thanks for joining Summer League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
+      html: '<h2>Thanks for joining Fall League 2017</h2><p>League started on March 20th, 2017</p><p>This league will end on June 4th, 2017</p><p>Enjoy the league and please let us know if you have any questions!</p>'
     })
     .then((res) => {
       console.log(res);
@@ -61,7 +61,7 @@ class SummerLeague extends Component {
     })
 
     this.setState({
-      playersInSummer2017: this.state.playersInSummer2017.concat(
+      playersInFall2017: this.state.playersInFall2017.concat(
         [{
           firstName: firstName,
           lastName: lastName,
@@ -74,7 +74,7 @@ class SummerLeague extends Component {
       method: 'post',
       url: '/api/players_leagues',
       data: {
-        leagueId: 2
+        leagueId: 3
       }
     })
     .then((res) => {
@@ -91,9 +91,9 @@ class SummerLeague extends Component {
 
     return (
       <Grid>
-        <h3>Summer 2017 Tennis League</h3>
-        <h5>League starts on 6/5/2017</h5>
-        <h5>League ends on 8/20/2017</h5>
+        <h3>Fall 2017 Tennis League</h3>
+        <h5>League starts on 8/21/2017</h5>
+        <h5>League ends on 10/22/2017</h5>
         <Button onClick={this.joinLeague} bsStyle="primary" disabled={isButtonDisabled}>Join League</Button>
         <Table responsive striped condensed hover bordered>
           <thead>
@@ -106,7 +106,7 @@ class SummerLeague extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.playersInSummer2017.map((player) => {
+            {this.state.playersInFall2017.map((player) => {
               return (
                 <tr key={player.email}>
                   <td>{`${player.firstName} ${player.lastName}`}</td>
@@ -125,4 +125,4 @@ class SummerLeague extends Component {
   }
 }
 
-export default SummerLeague;
+export default FallLeague;

@@ -198,6 +198,8 @@ class SpringLeague extends Component {
     return (
       <Grid>
         <h3>Spring 2017 Tennis League</h3>
+        <h5>League started on 3/20/2017</h5>
+        <h5>League is going to end on 6/4/2017</h5>
         <Button onClick={this.joinLeague} bsStyle="primary" disabled={isButtonDisabled}>Join League</Button>
 
         <Table responsive striped condensed hover bordered>

@@ -68,6 +68,7 @@ class App extends Component {
 							<NavDropdown eventKey={3} title="Leagues" id="basic-nav-dropdown">
 								<MenuItem eventKey={3.1} onClick={() => browserHistory.push('/SpringLeague2017')}>Spring League 2017</MenuItem>
 								<MenuItem eventKey={3.2} onClick={() => browserHistory.push('/SummerLeague2017')}>Summer League 2017</MenuItem>
+								<MenuItem eventKey={3.3} onClick={() => browserHistory.push('/FallLeague2017')}>Fall League 2017</MenuItem>
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
 			        <NavItem eventKey={2} onClick={() => browserHistory.push('/submitscore')}>Submit Score</NavItem>
