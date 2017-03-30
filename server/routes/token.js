@@ -56,6 +56,10 @@ router.post('/token', (req, res, next) => {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         secure: router.get('env') === 'production'
       })
+      res.cookie('admin', player.admin, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
 
       delete player.hashedPassword;
 
@@ -86,6 +90,7 @@ router.delete('/token', (req, res) => {
   res.clearCookie('playerId');
   res.clearCookie('playerHomeCourt');
   res.clearCookie('playerEmail');
+  res.clearCookie('admin');
   res.end();
 });
 

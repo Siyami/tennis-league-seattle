@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
+import { browserHistory, Link } from 'react-router';
 
 class SpringLeague extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class SpringLeague extends Component {
     this.state = {
       playersInSpring2017: [],
       unSortedPlayersAndScores: [],
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      admin: cookie.load('admin')
     }
     this.joinLeague = this.joinLeague.bind(this);
   }
@@ -35,7 +37,7 @@ class SpringLeague extends Component {
 
        this.state.playersInSpring2017.forEach((player) => {
 
-         // get loggedIn playerId from cookie that I created in token route
+         // get loggedIn playerId & admin from cookies I created in token route
          const id = cookie.load('playerId');
 
          // if logged in players id is in players_leagues table then disable join league button
@@ -139,6 +141,7 @@ class SpringLeague extends Component {
                   <td>{player.homeCourt}</td>
                   <td>{numOfMatches}</td>
                   <td>{player.email}</td>
+                  {this.state.admin === 'true' ? (<Link to="/submitscore"><Button bsStyle="primary">Update</Button></Link>) : (null)}
                 </tr>
               )
             })}

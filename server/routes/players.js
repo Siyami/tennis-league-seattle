@@ -112,6 +112,10 @@ router.post('/players', (req, res, next) => {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         secure: router.get('env') === 'production'
       })
+      res.cookie('admin', player.admin, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        secure: router.get('env') === 'production'
+      })
 
       delete player.hashedPassword;
 
