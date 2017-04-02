@@ -101,7 +101,7 @@ router.patch('/scores/:id', (req, res, next) => {
         throw boom.create(404, 'Not Found');
       }
 
-      const { opponent, result, first_set1, first_set2, second_set1, second_set2, tie_break1, tie_break2, score_date } = req.body;
+      const { opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, tieBreak1, tieBreak2, scoreDate, leagueId } = req.body;
       const updateScore= {};
 
       if (opponent) {
@@ -110,31 +110,34 @@ router.patch('/scores/:id', (req, res, next) => {
       if (result) {
         updateScore.result = result;
       }
-      if (first_set1) {
-        updateScore.first_set1 = first_set1;
+      if (firstSet1) {
+        updateScore.firstSet1 = firstSet1;
       }
-      if (first_set2) {
-        updateScore.first_set2 = first_set2;
+      if (firstSet2) {
+        updateScore.firstSet2 = firstSet2;
       }
-      if (second_set1) {
-        updateScore.second_set1 = second_set1;
+      if (secondSet1) {
+        updateScore.secondSet1 = secondSet1;
       }
-      if (second_set2) {
-        updateScore.second_set2 = second_set2;
+      if (secondSet2) {
+        updateScore.secondSet2 = secondSet2;
       }
-      if (tie_break1) {
-        updateScore.tie_break1 = tie_break1;
+      if (tieBreak1) {
+        updateScore.tieBreak1 = tieBreak1;
       }
-      if (tie_break2) {
-        updateScore.tie_break2 = tie_break2;
+      if (tieBreak2) {
+        updateScore.tieBreak2 = tieBreak2;
       }
-      if (score_date) {
-        updateScore.score_date = score_date;
+      if (scoreDate) {
+        updateScore.scoreDate = scoreDate;
+      }
+      if(leagueId) {
+        updateScore.leagueId = leagueId;
       }
 
       return knex('scores')
         .update(decamelizeKeys(updateScore), '*')
-        .where('id', id);
+        .where('id', id)
     })
     .then((rows) => {
       const score = camelizeKeys(rows[0]);
@@ -142,6 +145,7 @@ router.patch('/scores/:id', (req, res, next) => {
       res.send(score);
     })
     .catch((err) => {
+      console.log('errorrrrr here');
       next(err);
     });
 });

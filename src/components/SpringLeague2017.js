@@ -141,7 +141,7 @@ class SpringLeague extends Component {
                   <td>{player.homeCourt}</td>
                   <td>{numOfMatches}</td>
                   <td>{player.email}</td>
-                  {this.state.admin === 'true' ? (<Link to="/submitscore"><Button bsStyle="primary">Update</Button></Link>) : (null)}
+                  {this.state.admin === 'true' ? (<Link to="/UpdateScores"><Button bsStyle="primary">Update</Button></Link>) : (null)}
                 </tr>
               )
             })}

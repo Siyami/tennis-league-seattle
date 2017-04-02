@@ -5,8 +5,8 @@ class Home extends Component {
   render() {
     return (
       <Grid>
-        <Jumbotron>
-          <h3>Welcome to TennisSeattle!</h3>
+        <Jumbotron style={{backgroundColor: "#20994c"}}>
+          <h3 style={{color: "white"}}>Welcome to TennisSeattle!</h3>
           <ul>
             <li>Join tennis leagues</li>
             <li>Play matches</li>

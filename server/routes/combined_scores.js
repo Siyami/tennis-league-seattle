@@ -12,7 +12,7 @@ const router = express.Router();
 // One to Many relation between users and scores table
 router.get('/combined_scores', (req, res, next) => {
   knex('scores')
-    .select('*')
+    .select('admin','email', 'first_name', 'last_name', 'first_set1', 'first_set2', 'second_set1', 'second_set2', 'tie_break1', 'tie_break2', 'players.id', 'scores.id as scoreId', 'scores.id as scores_id', 'home_court', 'league_id', 'ntrp_rating', 'opponent', 'pic_url', 'player_id', 'result', 'score_date')
     .innerJoin('players', 'scores.player_id', 'players.id')
     .orderBy('scores.score_date')
     .then((scores) => {
