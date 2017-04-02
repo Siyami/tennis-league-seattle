@@ -18,22 +18,22 @@ app.use(bodyParser.json());
 app.disable('x-powered-by');
 app.use(cookieParser());
 
-const authorize = function(req, res, next) {
- jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
-   if (err) {
-     return next(boom.create(401, 'Unauthorized'));
-   }
-
-   req.claim = payload;
-
-   next();
- });
-};
+// const authorize = function(req, res, next) {
+//  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+//    if (err) {
+//      return next(boom.create(401, 'Unauthorized'));
+//    }
+//
+//    req.claim = payload;
+//
+//    next();
+//  });
+// };
 
 app.use('/api', require('./routes/players'));
 app.use('/api', require('./routes/token'));
-app.use('/api', authorize, require('./routes/scores'));
-app.use('/api', authorize, require('./routes/combined_scores'));
+app.use('/api', require('./routes/scores'));
+app.use('/api', require('./routes/combined_scores'));
 app.use('/api', require('./routes/leagues'));
 app.use('/api', require('./routes/players_leagues'));
 app.use('/api', require('./routes/emails'));

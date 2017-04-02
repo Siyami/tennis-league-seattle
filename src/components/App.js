@@ -4,13 +4,15 @@ import {  } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+import cookie from 'react-cookie';
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			isLoggedIn: false
+			isLoggedIn: false,
+			playerFirstName: cookie.load('playerFirstName')
 		}
 		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
 		this.logOut = this.logOut.bind(this);
@@ -64,7 +66,9 @@ class App extends Component {
 								<MenuItem eventKey={3.3} onClick={() => browserHistory.push('/FallLeague2017')}>Fall League 2017</MenuItem>
 							</NavDropdown>
 			        <NavItem eventKey={1} onClick={() => browserHistory.push('/courts')}>Find Courts</NavItem>
-			        <NavItem eventKey={2} onClick={() => browserHistory.push('/submitscore')}>Submit Score</NavItem>
+							{this.state.isLoggedIn ? (
+								<NavItem eventKey={2} onClick={() => browserHistory.push('/submitscore')}>Submit Score</NavItem>
+								) : (null)}
 							<NavItem eventKey={3} onClick={() => browserHistory.push('/viewscores')}>View All Scores</NavItem>
 			      </Nav>
 						{this.state.isLoggedIn ? (

@@ -9,6 +9,18 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
+
 router.get('/players_leagues/:leagueId', (req, res, next) => {
   const leagueId = Number.parseInt(req.params.leagueId)
 
@@ -33,7 +45,7 @@ router.get('/players_leagues/:leagueId', (req, res, next) => {
     })
 })
 
-router.post('/players_leagues', (req, res, next) => {
+router.post('/players_leagues', authorize, (req, res, next) => {
   const { leagueId } = req.body;
   const insertPlayersLeague = { playerId: req.claim.playerId, leagueId };
 

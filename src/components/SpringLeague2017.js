@@ -59,6 +59,26 @@ class SpringLeague extends Component {
 
     this.setState({ isButtonDisabled: true })
 
+    // Join league
+    axios({
+      method: 'post',
+      url: '/api/players_leagues',
+      data: {
+        leagueId: 1
+      },
+      validateStatus: (status) => status < 500
+    })
+    .then((res) => {
+      if(res.status >= 400) {
+        alert(res.data + ', Please Log In or Sign Up to Join a League')
+        browserHistory.push('/signup')
+      }
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
       playerEmail: `${email}`,
@@ -80,21 +100,9 @@ class SpringLeague extends Component {
           email: email,
           homeCourt: homeCourt
         }]
-      )})
+      )}
+    )
 
-    axios({
-      method: 'post',
-      url: '/api/players_leagues',
-      data: {
-        leagueId: 1
-      }
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   render() {
