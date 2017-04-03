@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Grid, Table, Modal, Form, ControlLabel, FormGroup, FormControl, Row, Col } from 'react-bootstrap';
+import { Button, Grid, Table, Modal, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
-import browserHistory from 'react-router';
 
 class ViewScores extends Component {
   constructor(props) {

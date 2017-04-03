@@ -59,7 +59,10 @@ class App extends Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav>
-							<NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem>
+							{/* <NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem> */}
+							{this.state.isLoggedIn ? (
+								<NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem>
+								) : (null)}
 							<NavDropdown eventKey={3} title="Leagues" id="basic-nav-dropdown">
 								<MenuItem eventKey={3.1} onClick={() => browserHistory.push('/SpringLeague2017')}>Spring League 2017</MenuItem>
 								<MenuItem eventKey={3.2} onClick={() => browserHistory.push('/SummerLeague2017')}>Summer League 2017</MenuItem>

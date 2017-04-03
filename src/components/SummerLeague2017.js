@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
 
 class SummerLeague extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class SummerLeague extends Component {
     this.state = {
       playersInSummer2017: [],
       unSortedPlayersAndScores: [],
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      playerId: cookie.load('playerId')
     }
     this.joinLeague = this.joinLeague.bind(this);
   }
@@ -46,6 +48,26 @@ class SummerLeague extends Component {
 
     this.setState({ isButtonDisabled: true })
 
+    // Join league
+    axios({
+      method: 'post',
+      url: '/api/players_leagues',
+      data: {
+        leagueId: 2
+      },
+      validateStatus: (status) => status < 500
+    })
+    .then((res) => {
+      if(res.status >= 400) {
+        alert(res.data + ', Please Log In or Sign Up to Join a League')
+        browserHistory.push('/signup')
+      }
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
       playerEmail: `${email}`,
@@ -60,29 +82,17 @@ class SummerLeague extends Component {
       console.log(err);
     })
 
-    this.setState({
-      playersInSummer2017: this.state.playersInSummer2017.concat(
-        [{
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          homeCourt: homeCourt
-        }]
-      )})
-
-    axios({
-      method: 'post',
-      url: '/api/players_leagues',
-      data: {
-        leagueId: 2
-      }
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    if(this.state.playerId) {
+      this.setState({
+        playersInSummer2017: this.state.playersInSummer2017.concat(
+          [{
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            homeCourt: homeCourt
+          }]
+        )})
+    }
   }
 
   render() {

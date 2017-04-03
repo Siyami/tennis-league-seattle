@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
 import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
 
 class FallLeague extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class FallLeague extends Component {
     this.state = {
       playersInFall2017: [],
       unSortedPlayersAndScores: [],
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      send: false,
+      playerId: cookie.load('playerId')
     }
     this.joinLeague = this.joinLeague.bind(this);
   }
@@ -44,6 +47,27 @@ class FallLeague extends Component {
 
     this.setState({ isButtonDisabled: true })
 
+    // Join league
+    axios({
+      method: 'post',
+      url: '/api/players_leagues',
+      data: {
+        leagueId: 3
+      },
+      validateStatus: (status) => status < 500
+    })
+    .then((res) => {
+      if(res.status >= 400) {
+        alert(res.data + ', Please Log In or Sign Up to Join a League')
+        browserHistory.push('/signup')
+      }
+      this.setState({ send: true })
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
       playerEmail: `${email}`,
@@ -57,29 +81,17 @@ class FallLeague extends Component {
       console.log(err);
     })
 
-    this.setState({
-      playersInFall2017: this.state.playersInFall2017.concat(
-        [{
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          homeCourt: homeCourt
-        }]
-      )})
-
-    axios({
-      method: 'post',
-      url: '/api/players_leagues',
-      data: {
-        leagueId: 3
-      }
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    if(this.state.playerId) {
+      this.setState({
+        playersInFall2017: this.state.playersInFall2017.concat(
+          [{
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            homeCourt: homeCourt
+          }]
+        )})
+    }
   }
 
   render() {

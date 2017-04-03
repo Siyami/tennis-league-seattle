@@ -12,7 +12,8 @@ class SpringLeague extends Component {
       playersInSpring2017: [],
       unSortedPlayersAndScores: [],
       isButtonDisabled: false,
-      admin: cookie.load('admin')
+      admin: cookie.load('admin'),
+      playerId: cookie.load('playerId')
     }
     this.joinLeague = this.joinLeague.bind(this);
   }
@@ -92,16 +93,19 @@ class SpringLeague extends Component {
       console.log(err);
     })
 
-    this.setState({
-      playersInSpring2017: this.state.playersInSpring2017.concat(
-        [{
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          homeCourt: homeCourt
-        }]
-      )}
-    )
+    if(this.state.playerId) {
+      this.setState({
+        playersInSpring2017: this.state.playersInSpring2017.concat(
+          [{
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            homeCourt: homeCourt
+          }]
+        )}
+      )
+
+    }
 
   }
 
