@@ -4,9 +4,22 @@ const boom = require('boom');
 const express = require('express');
 const knex = require('../../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
+const jwt = require('jsonwebtoken');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
+
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
 
 router.get('/leagues', (_req, res, next) => {
   knex('leagues')
@@ -21,31 +34,7 @@ router.get('/leagues', (_req, res, next) => {
     });
 });
 
-// router.get('/scores/:id', (req, res, next) => {
-//   const id = Number.parseInt(req.params.id);
-//
-//   if (Number.isNaN(id)) {
-//     return next();
-//   }
-//
-//   knex('scores')
-//     .where('id', id)
-//     .first()
-//     .then((row) => {
-//       if (!row) {
-//         throw boom.create(404, 'Not Found');
-//       }
-//
-//       const score = camelizeKeys(row);
-//
-//       res.send(score);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
-
-router.post('/leagues', (req, res, next) => {
+router.post('/leagues', authorize, (req, res, next) => {
   const { league_name, starts_at, ends_at } = req.body;
 
   // if (!title || !title.trim()) {
@@ -81,38 +70,5 @@ router.post('/leagues', (req, res, next) => {
       next(err);
     });
 });
-
-// router.delete('/scores/:id', (req, res, next) => {
-//   const id = Number.parseInt(req.params.id);
-//
-//   if (Number.isNaN(id)) {
-//     return next();
-//   }
-//
-//   let score;
-//
-//   knex('scores')
-//     .where('id', id)
-//     .first()
-//     .then((row) => {
-//       if (!row) {
-//         throw boom.create(404, 'Not Found');
-//       }
-//
-//       score = camelizeKeys(row);
-//
-//       return knex('scores')
-//         .del()
-//         .where('id', id);
-//     })
-//     .then(() => {
-//       delete score.id;
-//
-//       res.send(score);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
 
 module.exports = router;

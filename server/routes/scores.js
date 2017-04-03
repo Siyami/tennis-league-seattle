@@ -4,9 +4,22 @@ const boom = require('boom');
 const express = require('express');
 const knex = require('../../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
+const jwt = require('jsonwebtoken');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
+
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
 
 router.get('/scores/:leagueId', (req, res, next) => {
   const leagueId = Number.parseInt(req.params.leagueId);
@@ -31,46 +44,7 @@ router.get('/scores/:leagueId', (req, res, next) => {
 
 })
 
-
-// router.get('/scores', (_req, res, next) => {
-//   knex('scores')
-//     .orderBy('id')
-//     .then((rows) => {
-//       const scores = camelizeKeys(rows);
-//
-//       res.send(scores);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
-
-// router.get('/scores/:id', (req, res, next) => {
-//   const id = Number.parseInt(req.params.id);
-//
-//   if (Number.isNaN(id)) {
-//     return next();
-//   }
-//
-//   knex('scores')
-//     .innerJoin('players')
-//     .where('scores.id', id)
-//     .first()
-//     .then((row) => {
-//       if (!row) {
-//         throw boom.create(404, 'Not Found');
-//       }
-//
-//       const score = camelizeKeys(row);
-//
-//       res.send(score);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
-
-router.post('/scores', (req, res, next) => {
+router.post('/scores', authorize, (req, res, next) => {
   const { leagueId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 } = req.body;
   const insertScore = { leagueId, playerId: req.claim.playerId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 };
 
@@ -86,7 +60,7 @@ router.post('/scores', (req, res, next) => {
     });
 });
 
-router.patch('/scores/:id', (req, res, next) => {
+router.patch('/scores/:id', authorize, (req, res, next) => {
   const id = Number.parseInt(req.params.id);
 
   if (Number.isNaN(id)) {
@@ -145,42 +119,8 @@ router.patch('/scores/:id', (req, res, next) => {
       res.send(score);
     })
     .catch((err) => {
-      console.log('errorrrrr here');
       next(err);
     });
 });
-
-// router.delete('/scores/:id', (req, res, next) => {
-//   const id = Number.parseInt(req.params.id);
-//
-//   if (Number.isNaN(id)) {
-//     return next();
-//   }
-//
-//   let score;
-//
-//   knex('scores')
-//     .where('id', id)
-//     .first()
-//     .then((row) => {
-//       if (!row) {
-//         throw boom.create(404, 'Not Found');
-//       }
-//
-//       score = camelizeKeys(row);
-//
-//       return knex('scores')
-//         .del()
-//         .where('id', id);
-//     })
-//     .then(() => {
-//       delete score.id;
-//
-//       res.send(score);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// });
 
 module.exports = router;

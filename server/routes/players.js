@@ -10,6 +10,18 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
+
 router.get('/players', (_req, res, next) => {
   knex('players')
     .orderBy('first_name')
@@ -48,7 +60,7 @@ router.get('/players/:id', (req, res, next) => {
     });
 });
 
-router.post('/players', (req, res, next) => {
+router.post('/players', authorize, (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !email.trim()) {

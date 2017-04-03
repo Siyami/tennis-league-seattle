@@ -9,6 +9,18 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
+
 // One to Many relation between users and scores table
 router.get('/combined_scores', (req, res, next) => {
   knex('scores')

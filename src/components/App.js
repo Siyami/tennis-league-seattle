@@ -11,8 +11,8 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			isLoggedIn: false,
-			playerFirstName: cookie.load('playerFirstName')
+			playerFirstName: cookie.load('playerFirstName'),
+			isLoggedIn: false
 		}
 		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
 		this.logOut = this.logOut.bind(this);

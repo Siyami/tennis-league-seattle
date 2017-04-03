@@ -10,7 +10,19 @@ const nodemailer = require('nodemailer');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.post('/emails', (req, res, next) => {
+const authorize = function(req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, playload) => {
+    if (err) {
+      return next(boom.create(401, 'Unauthorized'));
+    }
+
+    req.claim = playload;
+
+    next();
+  });
+};
+
+router.post('/emails', authorize, (req, res, next) => {
   const { playerEmail, playerFirstName, text, html } = req.body;
 
   // create reusable transporter object using the default SMTP transport
