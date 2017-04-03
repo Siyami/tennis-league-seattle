@@ -73,7 +73,7 @@ class Login extends Component {
         <Validation.components.Form>
           <Row>
             <Col xs={6} xsOffset={3}>
-              <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%"}}>
+              <Form onSubmit={this.handleSubmit} horizontal style={{margin: "25% 10%" , textAlign: "center"}}>
                 <FormGroup controlId="formHorizontalEmail">
                   {/* <Col componentClass={ControlLabel} sm={2}>
                     Email

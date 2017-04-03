@@ -157,12 +157,12 @@ class SignUp extends Component {
                   />
               </FormGroup>
 
-              <FormGroup>
-                  <Button bsStyle="primary" type="submit">
-                    Sign Up
-                  </Button>
+              <FormGroup style={{textAlign: "center"}}>
+                <Button bsStyle="primary" type="submit">
+                  Sign Up
+                </Button>
               </FormGroup>
-              <div>
+              <div style={{textAlign: "center"}}>
 
                 <a onClick={() => {browserHistory.push('/login')}}>Already have an account? Click to Log In</a>
               </div>

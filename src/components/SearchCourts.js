@@ -62,7 +62,7 @@ class SearchCourts extends Component {
 							padding: 0 }}>
 						<Map center={location} markers={this.state.courts} />
 					</div>
-					<Courts courts={this.state.courts} />
+					{/* <Courts courts={this.state.courts} /> */}
 				</div>
 			</Grid>
 		)

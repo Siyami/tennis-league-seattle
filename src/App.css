@@ -22,3 +22,33 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.jumbotron {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+h2 {
+  color: #15994c;
+  font-weight: bold;
+}
+
+h3 {
+  color: #15994c;
+  font-weight: bold;
+}
+
+
+h4 {
+  color: #15994c;
+  font-weight: bold;
+
+}
+
+h5 {
+  font-weight: bold;
+}
+
+p {
+  font-weight: bold;
+}

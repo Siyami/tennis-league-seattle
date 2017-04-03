@@ -46,7 +46,7 @@ class Profile extends Component {
           <Col xs={12} md={4} mdOffset={3} >
             <h2>Profile</h2>
             <Thumbnail src={this.state.player.picUrl} alt="242x200">
-              <h3>Welcome: {`${this.state.player.firstName} ${this.state.player.lastName}`}</h3>
+              <h3>{`${this.state.player.firstName} ${this.state.player.lastName}`}</h3>
               <p>Email: {this.state.player.email}</p>
               <p>Ntrp Level: {this.state.player.ntrpRating}</p>
               <p>Home Court: {this.state.player.homeCourt}</p>

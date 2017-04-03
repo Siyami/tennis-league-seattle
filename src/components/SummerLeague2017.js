@@ -103,9 +103,9 @@ class SummerLeague extends Component {
         <h3>Summer 2017 Tennis League</h3>
         <h5>League starts on 6/5/2017</h5>
         <h5>League ends on 8/20/2017</h5>
-        <Button onClick={this.joinLeague} bsStyle="primary" disabled={isButtonDisabled}>Join League</Button>
+        <Button onClick={this.joinLeague} bsStyle="primary" disabled={isButtonDisabled} style={{marginBottom: "10px"}}>Join League</Button>
         <Table responsive striped condensed hover bordered>
-          <thead>
+          <thead style={{color: "#15994c"}}>
             <tr>
               <th>Player Name</th>
               <th>W/L</th>

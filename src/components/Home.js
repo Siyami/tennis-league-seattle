@@ -18,20 +18,20 @@ class Home extends Component {
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis5.jpg"/>
             <Carousel.Caption>
-              <h3>Welcome to TennisSeattle</h3>
+              <h3 style={{color: "white"}}>Welcome to TennisSeattle</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis1.jpg"/>
             <Carousel.Caption>
-              <h3>Play Matches</h3>
+              <h3 style={{color: "white"}}>Play Matches</h3>
               <p></p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis3.jpg"/>
             <Carousel.Caption>
-              <h3>Meet new people</h3>
+              <h3 style={{color: "white"}}>Meet new people</h3>
               <p></p>
             </Carousel.Caption>
           </Carousel.Item>

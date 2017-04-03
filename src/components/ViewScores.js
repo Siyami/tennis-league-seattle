@@ -88,9 +88,9 @@ class ViewScores extends Component {
 
     return(
       <Grid>
-        <h3>Submitted Scores for Spring League 2017</h3>
+        <h3 style={{color: "#15994c"}}>Submitted Scores for Spring League 2017</h3>
         <Table responsive striped condensed hover bordered>
-          <thead>
+          <thead style={{color: "#15994c"}}>
             <tr>
               <th>Player 1</th>
               <th>Player 2</th>
@@ -111,13 +111,13 @@ class ViewScores extends Component {
                   {/* {this.state.admin === 'true' ? (<Link to="/submitscore"><Button bsStyle="primary">Update</Button></Link>) : (null)} */}
                   {this.state.admin === 'true' ? (
                     <div className="modal-container">
-                      <Button bsStyle="primary" bsSize="small" onClick={() => this.setState({ showModal: true})}>Update</Button>
+                      <Button style={{margin: "0px 18% 0px 18%"}} bsStyle="primary" bsSize="small" onClick={() => this.setState({ showModal: true})}>Update</Button>
                         <Modal show={this.state.showModal} onHide={closeModal} container={this} aria-labelledby="contained-modal-title">
                           <Modal.Header closeButton>
                             <Modal.Title id="contained-modal-title">Update Score</Modal.Title>
                           </Modal.Header>
                           <Modal.Body>
-                            <Form onSubmit={(e) => this.handleSubmit(e, score.scoreId)} style={{margin: "5% 20%"}}>
+                            <Form onSubmit={(e) => this.handleSubmit(e, score.scoreId)} style={{margin: "3% 30%", color: "#20994c"}}>
                               <FormGroup controlId="formControlsSelect">
                                 {/* <ControlLabel>Select</ControlLabel> */}
                                 <FormControl
@@ -211,9 +211,10 @@ class ViewScores extends Component {
                                 />
                               </FormGroup>
 
-                              <Button type="submit" bsStyle="primary" onClick={closeModal}>Update</Button>
-                              <Button bsStyle="danger" onClick={closeModal}>Cancel</Button>
-
+                              <FormGroup style={{textAlign: "center"}}>
+                                <Button style={{marginRight: "5px"}} type="submit" bsStyle="primary" onClick={closeModal}>Update</Button>
+                                <Button bsStyle="danger" onClick={closeModal}>Cancel</Button>
+                              </FormGroup>
                             </Form>
                           </Modal.Body>
                           {/* <Modal.Footer>

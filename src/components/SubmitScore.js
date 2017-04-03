@@ -80,9 +80,9 @@ class SubmitScore extends Component {
     return (
       <Grid>
 
-        <Form onSubmit={this.handleSubmit} style={{margin: "5% 20%"}}>
-          <h4>Please Submit Your Scores For Spring League</h4>
-          <h4>{`${this.state.loggedInPlayerFirstName}  ${this.state.loggedInPlayerLastName} vs.`}</h4>
+        <h3 style={{textAlign: "center", color: "black"}}>Submit Your Scores For Spring League</h3>
+        <Form onSubmit={this.handleSubmit} style={{margin: "3% 30%", color: "#20994c"}}>
+          <h4 style={{color: "#20994c"}}>{`${this.state.loggedInPlayerFirstName}  ${this.state.loggedInPlayerLastName} vs.`}</h4>
 
           <FormGroup controlId="formControlsSelect">
             {/* <ControlLabel>Select</ControlLabel> */}
@@ -124,36 +124,6 @@ class SubmitScore extends Component {
               value={this.state.scoreDate}
             />
           </FormGroup>
-
-          {/* SELECT OPTION FOR RECORDING SCORES */}
-
-          {/* <FormGroup controlId="formControlsSelect">
-            <ControlLabel>First Set</ControlLabel>
-            <FormControl  componentClass="select"
-              placeholder="select"
-              onChange={this.handleChange}
-              value={this.state.firstSet1}
-              name="firstSet1">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="1">4</option>
-              <option value="2">5</option>
-              <option value="3">6</option>
-            </FormControl>
-            <FormControl  componentClass="select"
-              placeholder="select"
-              onChange={this.handleChange}
-              value={this.state.firstSet2}
-              name="firstSet2">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="1">4</option>
-              <option value="2">5</option>
-              <option value="3">6</option>
-            </FormControl>
-          </FormGroup> */}
 
           <FormGroup controlId="formInlineName">
             <ControlLabel>First Set</ControlLabel>
@@ -207,9 +177,13 @@ class SubmitScore extends Component {
             />
           </FormGroup>
 
-          <Button type="submit" bsStyle="primary">
-            Submit Score
-          </Button>
+          <FormGroup style={{textAlign: "center"}}>
+            <Button type="submit" bsStyle="primary">
+              Submit Score
+            </Button>
+
+          </FormGroup>
+
 
         </Form>
 

@@ -12,7 +12,6 @@ import Profile from './Profile';
 import SpringLeague2017 from './SpringLeague2017';
 import SummerLeague2017 from './SummerLeague2017';
 import FallLeague2017 from './FallLeague2017';
-import UpdateScores from './UpdateScores';
 
 export default (
   <Route path="/" component={App}>
@@ -26,6 +25,5 @@ export default (
     <Route path="/SpringLeague2017" component={SpringLeague2017} />
     <Route path="/SummerLeague2017" component={SummerLeague2017} />
     <Route path="/FallLeague2017" component={FallLeague2017} />
-    <Route path="/UpdateScores" component={UpdateScores} />
   </Route>
 );
