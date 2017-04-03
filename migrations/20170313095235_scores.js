@@ -25,7 +25,6 @@ exports.up = function(knex) {
     table.string('tie_break2').notNullable().defaultTo('');
     table.string('score_date').notNullable().defaultTo('');
     table.timestamps(true, true);
-
   });
 };
 
