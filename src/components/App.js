@@ -59,9 +59,8 @@ class App extends Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav>
-							{/* <NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem> */}
 							{this.state.isLoggedIn ? (
-								<NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>Profile</NavItem>
+								<NavItem eventKey={4} onClick={() => browserHistory.push('/profile')}>{this.state.playerFirstName + "'s "}Profile</NavItem>
 								) : (null)}
 							<NavDropdown eventKey={3} title="Leagues" id="basic-nav-dropdown">
 								<MenuItem eventKey={3.1} onClick={() => browserHistory.push('/SpringLeague2017')}>Spring League 2017</MenuItem>
@@ -76,9 +75,8 @@ class App extends Component {
 			      </Nav>
 						{this.state.isLoggedIn ? (
 							<Nav pullRight>
-								<NavItem eventKey={1} onClick={this.logOut}>Sign Out</NavItem>
+								<NavItem eventKey={2} onClick={this.logOut}>Sign Out</NavItem>
 							</Nav>
-
 						) : (
 							<Nav pullRight>
 								<NavItem eventKey={1} onClick={() => {browserHistory.push('/login')}}>Log In</NavItem>
