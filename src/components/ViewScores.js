@@ -88,7 +88,7 @@ class ViewScores extends Component {
 
     return(
       <Grid>
-        <h3>Submitted Scores</h3>
+        <h3>Submitted Scores for Spring League 2017</h3>
         <Table responsive striped condensed hover bordered>
           <thead>
             <tr>

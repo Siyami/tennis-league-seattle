@@ -162,8 +162,13 @@ class SignUp extends Component {
                     Sign Up
                   </Button>
               </FormGroup>
+              <div>
+
+                <a onClick={() => {browserHistory.push('/login')}}>Already have an account? Click to Log In</a>
+              </div>
 
             </Form>
+
           </Col>
         </Row>
       </Grid>
