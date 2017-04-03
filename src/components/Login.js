@@ -79,6 +79,7 @@ class Login extends Component {
                     Email
                   </Col> */}
                   <Validation.components.Input
+                    style={{width: "50%"}}
                     validations={['required', 'email']}
                     name="email"
                     type="email"
@@ -92,6 +93,7 @@ class Login extends Component {
                     Password
                   </Col> */}
                   <Validation.components.Input
+                    style={{width: "50%"}}
                     validations={['required', 'passwordLength']}
                     type="password"
                     placeholder="Password"
