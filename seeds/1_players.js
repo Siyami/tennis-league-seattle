@@ -147,9 +147,34 @@ exports.seed = function(knex, Promise) {
           admin: false,
           created_at: new Date('2017-01-29 14:26:16 UTC'),
           updated_at: new Date('2017-01-29 14:26:16 UTC')
+        },
+        {
+          id: 12,
+          first_name: 'Alexander',
+          last_name: 'Zverev',
+          email: 'zverev@atp.com',
+          hashed_password: '$2a$12$OyrPPu1MZZAowBhHuuBRfeBBsXpCsrTFbWlWPHjgDEUpQamVSa4vC',
+          ntrp_rating: 'Open',
+          home_court: 'Germany',
+          pic_url: 'http://www.atpworldtour.com/-/media/tennis/players/head-shot/vibrant/federer-headshot15.png',
+          admin: false,
+          created_at: new Date('2017-01-29 14:26:16 UTC'),
+          updated_at: new Date('2017-01-29 14:26:16 UTC')
+        },
+        {
+          id: 13,
+          first_name: 'Nick',
+          last_name: 'Kyrgios',
+          email: 'nick@atp.com',
+          hashed_password: '$2a$12$OyrPPu1MZZAowBhHuuBRfeBBsXpCsrTFbWlWPHjgDEUpQamVSa4vC',
+          ntrp_rating: 'Open',
+          home_court: 'Sydney',
+          pic_url: 'http://www.atpworldtour.com/-/media/tennis/players/head-shot/vibrant/federer-headshot15.png',
+          admin: false,
+          created_at: new Date('2017-01-29 14:26:16 UTC'),
+          updated_at: new Date('2017-01-29 14:26:16 UTC')
         }
       ])
-
     })
     .then(() => {
       return knex.raw(
