@@ -40,9 +40,10 @@ class App extends Component {
 				this.setState({
 					isLoggedIn: false
 				})
+				browserHistory.push('/')
 			})
 			.catch((err) => {
-
+				console.log(err);
 			});
 	}
 
