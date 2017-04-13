@@ -38,7 +38,6 @@ class ViewScores extends Component {
 
     axios.get('/api/combined_scores')
       .then((res) => {
-        console.log(res.data);
         this.setState({
           scores: res.data
         })

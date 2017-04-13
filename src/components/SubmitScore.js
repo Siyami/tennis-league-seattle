@@ -3,6 +3,8 @@ import { Grid, FormGroup, ControlLabel, FormControl, Form, Button } from 'react-
 import axios from 'axios';
 import cookie from 'react-cookie';
 import { browserHistory } from 'react-router';
+import Validation from 'react-validation';
+import './Validations'
 
 class SubmitScore extends Component {
   constructor(props) {
@@ -64,7 +66,8 @@ class SubmitScore extends Component {
         tieBreak1: this.state.tieBreak1,
         tieBreak2: this.state.tieBreak2,
         scoreDate: this.state.scoreDate,
-        leagueId: 1
+        leagueId: 1,
+        errors: {}
       }
     })
     .then((res) => {
@@ -79,13 +82,10 @@ class SubmitScore extends Component {
   render() {
     return (
       <Grid>
-
         <h3 style={{textAlign: "center", color: "black"}}>Submit Your Scores For Spring League</h3>
         <Form onSubmit={this.handleSubmit} style={{margin: "3% 30%", color: "#20994c"}}>
           <h4 style={{color: "#20994c"}}>{`${this.state.loggedInPlayerFirstName}  ${this.state.loggedInPlayerLastName} vs.`}</h4>
-
           <FormGroup controlId="formControlsSelect">
-            {/* <ControlLabel>Select</ControlLabel> */}
             <FormControl
               componentClass="select"
               placeholder="select"
@@ -100,7 +100,6 @@ class SubmitScore extends Component {
               })}
             </FormControl>
           </FormGroup>
-
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Result</ControlLabel>
             <FormControl
@@ -114,7 +113,6 @@ class SubmitScore extends Component {
               <option value="Lost">Lost</option>
             </FormControl>
           </FormGroup>
-
           <FormGroup controlId="formInlineName">
             <ControlLabel>Select Match Date</ControlLabel>
             <FormControl
@@ -124,7 +122,6 @@ class SubmitScore extends Component {
               value={this.state.scoreDate}
             />
           </FormGroup>
-
           <FormGroup controlId="formInlineName">
             <ControlLabel>First Set</ControlLabel>
             <FormControl
@@ -142,7 +139,6 @@ class SubmitScore extends Component {
               value={this.state.firstSet2}
             />
           </FormGroup>
-
           <FormGroup controlId="formInlineName">
             <ControlLabel>Second Set</ControlLabel>
             <FormControl
@@ -160,7 +156,6 @@ class SubmitScore extends Component {
               value={this.state.secondSet2}
             />
           </FormGroup>
-
           <FormGroup controlId="formInlineName">
             <ControlLabel>Tie Break</ControlLabel>
             <FormControl
@@ -176,21 +171,15 @@ class SubmitScore extends Component {
               value={this.state.tieBreak2}
             />
           </FormGroup>
-
           <FormGroup style={{textAlign: "center"}}>
             <Button type="submit" bsStyle="primary">
               Submit Score
             </Button>
-
           </FormGroup>
-
-
         </Form>
-
       </Grid>
     )
   }
-
 }
 
 export default SubmitScore;
