@@ -70,7 +70,7 @@ class SignUp extends Component {
               <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%", textAlign: "center"}}>
                 <FormGroup controlId="formHorizontalEmail">
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required', 'firstName']}
                       name="firstName"
                       type="text"
@@ -81,7 +81,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup controlId="formHorizontalEmail">
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required', 'lastName']}
                       name="lastName"
                       type="text"
@@ -92,7 +92,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup controlId="formHorizontalEmail">
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required', 'email']}
                       name="email"
                       type="email"
@@ -103,7 +103,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup controlId="formHorizontalPassword">
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required', 'passwordLength']}
                       type="password"
                       placeholder="Password"
@@ -114,7 +114,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required']}
                       name="ntrpRating"
                       type="text"
@@ -125,7 +125,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required']}
                       name="homeCourt"
                       type="text"
@@ -136,7 +136,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <FormGroup>
                     <Validation.components.Input
-                      style={{width: "50%"}}
+                      style={{width: "70%"}}
                       validations={['required']}
                       name="picUrl"
                       type="text"
