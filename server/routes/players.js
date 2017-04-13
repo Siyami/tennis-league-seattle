@@ -60,7 +60,7 @@ router.get('/players/:id', (req, res, next) => {
     });
 });
 
-router.post('/players', authorize, (req, res, next) => {
+router.post('/players', (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !email.trim()) {

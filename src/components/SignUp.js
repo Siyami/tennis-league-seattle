@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Row, Grid, FormGroup, Button, Col, Form, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import Validation from 'react-validation';
+import './Validations';
 
 class SignUp extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class SignUp extends Component {
       ntrpRating: '',
       homeCourt: '',
       picUrl: '',
-      admin: false
+      admin: false,
+      errors: {}
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -60,118 +63,99 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col xs={6} xsOffset={3}>
-            <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%"}}>
-
-              <FormGroup controlId="formHorizontalEmail">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  First Name
-                </Col> */}
-
-                  <FormControl
-                    name="firstName"
-                    type="text"
-                    placeholder="First Name"
-                    onChange={this.handleChange}
-                    value={this.state.firstName}
-                  />
-              </FormGroup>
-
-              <FormGroup controlId="formHorizontalEmail">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Last Name
-                </Col> */}
-                  <FormControl
-                    name="lastName"
-                    type="text"
-                    placeholder="Last Name"
-                    onChange={this.handleChange}
-                    value={this.state.lastName}
-                  />
-              </FormGroup>
-
-              <FormGroup controlId="formHorizontalEmail">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Email
-                </Col> */}
-                  <FormControl
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    onChange={this.handleChange}
-                    value={this.state.email}
-                  />
-              </FormGroup>
-
-              <FormGroup controlId="formHorizontalPassword">
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Password
-                </Col> */}
-                  <FormControl
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.handleChange}
-                    value={this.state.password}
-                  />
-              </FormGroup>
-
-              <FormGroup>
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Last Name
-                </Col> */}
-                  <FormControl
-                    name="ntrpRating"
-                    type="text"
-                    placeholder="NTRP Rating"
-                    onChange={this.handleChange}
-                    value={this.state.ntrpRating}
-                  />
-              </FormGroup>
-
-              <FormGroup>
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Last Name
-                </Col> */}
-                  <FormControl
-                    name="homeCourt"
-                    type="text"
-                    placeholder="Home Court"
-                    onChange={this.handleChange}
-                    value={this.state.homeCourt}
-                  />
-              </FormGroup>
-
-              <FormGroup>
-                {/* <Col componentClass={ControlLabel} sm={2}>
-                  Last Name
-                </Col> */}
-                  <FormControl
-                    name="picUrl"
-                    type="text"
-                    placeholder="Picture Url"
-                    onChange={this.handleChange}
-                    value={this.state.picUrl}
-                  />
-              </FormGroup>
-
-              <FormGroup style={{textAlign: "center"}}>
-                <Button bsStyle="primary" type="submit">
+      <Validation.components.Form>
+        <Grid>
+          <Row>
+            <Col xs={6} xsOffset={3}>
+              <Form onSubmit={this.handleSubmit} horizontal style={{margin: "10% 20%", textAlign: "center"}}>
+                <FormGroup controlId="formHorizontalEmail">
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required', 'firstName']}
+                      name="firstName"
+                      type="text"
+                      placeholder="First Name"
+                      onChange={this.handleChange}
+                      value={this.state.firstName}
+                    />
+                </FormGroup>
+                <FormGroup controlId="formHorizontalEmail">
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required', 'lastName']}
+                      name="lastName"
+                      type="text"
+                      placeholder="Last Name"
+                      onChange={this.handleChange}
+                      value={this.state.lastName}
+                    />
+                </FormGroup>
+                <FormGroup controlId="formHorizontalEmail">
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required', 'email']}
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                    />
+                </FormGroup>
+                <FormGroup controlId="formHorizontalPassword">
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required', 'passwordLength']}
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      onChange={this.handleChange}
+                      value={this.state.password}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required']}
+                      name="ntrpRating"
+                      type="text"
+                      placeholder="NTRP Rating"
+                      onChange={this.handleChange}
+                      value={this.state.ntrpRating}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required']}
+                      name="homeCourt"
+                      type="text"
+                      placeholder="Home Court"
+                      onChange={this.handleChange}
+                      value={this.state.homeCourt}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Validation.components.Input
+                      style={{width: "50%"}}
+                      validations={['required']}
+                      name="picUrl"
+                      type="text"
+                      placeholder="Picture Url"
+                      onChange={this.handleChange}
+                      value={this.state.picUrl}
+                    />
+                </FormGroup>
+                <Validation.components.Button type="submit" className="button" style={{textAlign: "center"}}>
                   Sign Up
-                </Button>
-              </FormGroup>
-              <div style={{textAlign: "center"}}>
-
-                <a onClick={() => {browserHistory.push('/login')}}>Already have an account? Click to Log In</a>
-              </div>
-
-            </Form>
-
-          </Col>
-        </Row>
-      </Grid>
+                </Validation.components.Button>
+                <div style={{textAlign: "center", margin: "5% 20%"}}>
+                  <a onClick={() => {browserHistory.push('/login')}}>Already have an account? Click to Log In</a>
+                </div>
+              </Form>
+            </Col>
+          </Row>
+        </Grid>
+    </Validation.components.Form>
     );
   }
 }

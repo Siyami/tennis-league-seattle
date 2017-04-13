@@ -31,8 +31,35 @@ Object.assign(Validation.rules, {
       )
     },
 
+    firstName: {
+      rule: value => validator.isLength(value, { min: 2, max: 20 }),
+      hint: () => (
+          <span className="form-error is-visible">
+              First Name must be between 3 and 20 characters in length.
+          </span>
+      )
+    },
+
+    lastName: {
+      rule: value => validator.isLength(value, { min: 2, max: 20 }),
+      hint: () => (
+          <span className="form-error is-visible">
+              Last Name must be between 3 and 20 characters in length.
+          </span>
+      )
+    },
+
     passwordLength: {
       rule: value => validator.isLength(value, { min: 8 }),
+      hint: () => (
+          <span className="form-error is-visible">
+              Password must be at least 8 characters in length.
+          </span>
+      )
+    },
+
+    ntrpLevel: {
+      rule: value => validator.isLength(value > 2 && value < 8),
       hint: () => (
           <span className="form-error is-visible">
               Password must be at least 8 characters in length.

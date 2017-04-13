@@ -43,18 +43,13 @@ class Login extends Component {
        validateStatus: (status) => status < 500
      })
     .then((res) => {
-      console.log(res.data);
-
       if(res.status < 400) {
-
         this.props.setStateFromLoginComponent()
-
         browserHistory.push('/')
       }
       else {
         alert(res.data)
       }
-
     })
     .catch((err) => {
       console.log(err);
@@ -75,9 +70,6 @@ class Login extends Component {
             <Col xs={6} xsOffset={3}>
               <Form onSubmit={this.handleSubmit} horizontal style={{margin: "25% 10%" , textAlign: "center"}}>
                 <FormGroup controlId="formHorizontalEmail">
-                  {/* <Col componentClass={ControlLabel} sm={2}>
-                    Email
-                  </Col> */}
                   <Validation.components.Input
                     style={{width: "50%"}}
                     validations={['required', 'email']}
@@ -89,9 +81,6 @@ class Login extends Component {
                   />
                 </FormGroup>
                 <FormGroup controlId="formHorizontalPassword">
-                  {/* <Col componentClass={ControlLabel} sm={2}>
-                    Password
-                  </Col> */}
                   <Validation.components.Input
                     style={{width: "50%"}}
                     validations={['required', 'passwordLength']}
@@ -102,11 +91,9 @@ class Login extends Component {
                     value={this.state.password}
                   />
                 </FormGroup>
-                <FormGroup>
-                  <Button bsStyle="primary" type="submit">
-                    Log in
-                  </Button>
-                </FormGroup>
+                <Validation.components.Button bsStyle="primary" type="submit" className="button">
+                  Log in
+                </Validation.components.Button>
               </Form>
             </Col>
           </Row>

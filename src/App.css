@@ -54,3 +54,14 @@ h5 {
 p {
   font-weight: bold;
 }
+
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 3px;
+}
