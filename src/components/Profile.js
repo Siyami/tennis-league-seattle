@@ -53,7 +53,6 @@ class Profile extends Component {
             </Thumbnail>
           </Col>
         </Row>
-
         <Row>
           <Col xs={12} md={6} mdOffset={2} >
             <Table responsive striped condensed hover bordered>

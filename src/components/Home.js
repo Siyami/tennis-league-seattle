@@ -13,7 +13,6 @@ class Home extends Component {
             <li>Meet new people!</li>
           </ul>
         </Jumbotron>
-
         <Carousel>
           <Carousel.Item>
             <img width={900} height={500} alt="900x500" src="tennis5.jpg"/>

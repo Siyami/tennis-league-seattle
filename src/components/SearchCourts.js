@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import Map from './Map'
-import Courts from './Courts'
-import axios from 'axios'
-import { Grid } from 'react-bootstrap'
+import React, { Component } from 'react';
+import Map from './Map';
+import Courts from './Courts';
+import axios from 'axios';
+import { Grid } from 'react-bootstrap';
 
 class SearchCourts extends Component {
 	constructor(){
@@ -13,11 +13,10 @@ class SearchCourts extends Component {
 	}
 
 	componentDidMount(){
-		const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=47.6062,-122.24&client_id=XMWHRJ1GC53RBBVTDKPVN0FE4ZFQ5BT2DEF3TQYWPZYFWKBT&client_secret=1JHMHNHRO25DFMFXWAWBAKQQQXK3ARSE4ZWRA5LI1IZ1WLS4&query=tennis+courts'
+		const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=47.6062,-122.24&client_id=XMWHRJ1GC53RBBVTDKPVN0FE4ZFQ5BT2DEF3TQYWPZYFWKBT&client_secret=1JHMHNHRO25DFMFXWAWBAKQQQXK3ARSE4ZWRA5LI1IZ1WLS4&query=tennis+courts';
 
 		axios.get(url)
 			.then(({data}) => {
-				// console.log(data);
 				this.setState({
 					courts: data.response.venues
 				})
@@ -25,7 +24,6 @@ class SearchCourts extends Component {
 			.catch((err) => {
 				console.log(err);
 			})
-
 	}
 
 	render(){
@@ -62,7 +60,6 @@ class SearchCourts extends Component {
 							padding: 0 }}>
 						<Map center={location} markers={this.state.courts} />
 					</div>
-					{/* <Courts courts={this.state.courts} /> */}
 				</div>
 			</Grid>
 		)

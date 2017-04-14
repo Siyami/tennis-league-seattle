@@ -18,18 +18,6 @@ app.use(bodyParser.json());
 app.disable('x-powered-by');
 app.use(cookieParser());
 
-// const authorize = function(req, res, next) {
-//  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
-//    if (err) {
-//      return next(boom.create(401, 'Unauthorized'));
-//    }
-//
-//    req.claim = payload;
-//
-//    next();
-//  });
-// };
-
 app.use('/api', require('./routes/players'));
 app.use('/api', require('./routes/token'));
 app.use('/api', require('./routes/scores'));
@@ -50,11 +38,11 @@ app.use((_req, res) => {
 
 app.use((err, _req, res, _next) => {
   if (err.output && err.output.statusCode) {
-     return res
-     .status(err.output.statusCode)
-       .set('Content-Type', 'text/plain')
-       .send(err.output.payload.message)
-   }
+    return res
+      .status(err.output.statusCode)
+      .set('Content-Type', 'text/plain')
+      .send(err.output.payload.message)
+  }
 
   console.error(err.stack);
   res.sendStatus(500);

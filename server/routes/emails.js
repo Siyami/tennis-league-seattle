@@ -15,9 +15,7 @@ const authorize = function(req, res, next) {
     if (err) {
       return next(boom.create(401, 'Unauthorized'));
     }
-
     req.claim = playload;
-
     next();
   });
 };
@@ -46,7 +44,7 @@ router.post('/emails', authorize, (req, res, next) => {
   // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-          return console.log(error);
+        return console.log(error);
       }
       console.log('Message %s sent: %s', info.messageId, info.response);
   });
