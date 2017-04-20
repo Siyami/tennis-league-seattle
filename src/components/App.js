@@ -85,7 +85,6 @@ class App extends Component {
 					}
 			    </Navbar.Collapse>
 			  </Navbar>
-
 				{React.cloneElement(
 					this.props.children,
 					{

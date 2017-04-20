@@ -51,7 +51,6 @@ class SignUp extends Component {
       }
     })
     .then((res) => {
-
       this.props.setStateFromLoginComponent();
       console.log(res);
       browserHistory.push('/');

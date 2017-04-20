@@ -133,7 +133,6 @@ class ViewScores extends Component {
                                   })}
                                 </FormControl>
                               </FormGroup>
-
                               <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Result</ControlLabel>
                                 <FormControl
@@ -147,7 +146,6 @@ class ViewScores extends Component {
                                   <option value="Lost">Lost</option>
                                 </FormControl>
                               </FormGroup>
-
                               <FormGroup controlId="formInlineName">
                                 <ControlLabel>Select Match Date</ControlLabel>
                                 <FormControl
@@ -157,7 +155,6 @@ class ViewScores extends Component {
                                   value={this.state.scoreDate}
                                 />
                               </FormGroup>
-
                               <FormGroup controlId="formInlineName">
                                 <ControlLabel>First Set</ControlLabel>
                                 <FormControl
@@ -175,7 +172,6 @@ class ViewScores extends Component {
                                   value={this.state.firstSet2}
                                 />
                               </FormGroup>
-
                               <FormGroup controlId="formInlineName">
                                 <ControlLabel>Second Set</ControlLabel>
                                 <FormControl
@@ -193,7 +189,6 @@ class ViewScores extends Component {
                                   value={this.state.secondSet2}
                                 />
                               </FormGroup>
-
                               <FormGroup controlId="formInlineName">
                                 <ControlLabel>Tie Break</ControlLabel>
                                 <FormControl
@@ -209,7 +204,6 @@ class ViewScores extends Component {
                                   value={this.state.tieBreak2}
                                 />
                               </FormGroup>
-
                               <FormGroup style={{textAlign: "center"}}>
                                 <Button style={{marginRight: "5px"}} type="submit" bsStyle="primary" onClick={closeModal}>Update</Button>
                                 <Button bsStyle="danger" onClick={closeModal}>Cancel</Button>

@@ -127,7 +127,6 @@ class SummerLeague extends Component {
             })}
           </tbody>
         </Table>
-
       </Grid>
     );
   }

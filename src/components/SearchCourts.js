@@ -32,22 +32,6 @@ class SearchCourts extends Component {
 			lng: -122.27
 		};
 
-		// you can manually include markers
-    // const markers = [
-    //   {
-    //     location: {
-    //       lat: 47.6062,
-    // 			lng: -122.24
-    //     }
-    //   },
-    //   {
-    //     location: {
-    //       lat: 47.6562,
-    // 			lng: -122.34
-    //     }
-    //   }
-    // ]
-
 		return (
 			<Grid>
 				<div style={{ width: "100%", marginLeft: 0 }}>

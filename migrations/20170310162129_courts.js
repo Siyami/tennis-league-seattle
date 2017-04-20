@@ -1,3 +1,4 @@
+'use strict';
 
 exports.up = function(knex) {
   return knex.schema.createTable('courts', (table) => {
