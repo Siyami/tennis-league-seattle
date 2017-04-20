@@ -5,7 +5,7 @@ import cookie from 'react-cookie';
 
 class ViewScores extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       scores: [],
@@ -20,7 +20,7 @@ class ViewScores extends Component {
       tieBreak1: '',
       tieBreak2: '',
       scoreDate: ''
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,7 +30,7 @@ class ViewScores extends Component {
       .then((res) => {
         this.setState({
           opponents: res.data
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -40,11 +40,11 @@ class ViewScores extends Component {
       .then((res) => {
         this.setState({
           scores: res.data
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   handleChange(event) {
@@ -129,7 +129,7 @@ class ViewScores extends Component {
                                   {this.state.opponents.map((opponent) => {
                                     return (
                                       <option key={opponent.id}>{`${opponent.firstName} ${opponent.lastName}`}</option>
-                                    )
+                                    );
                                   })}
                                 </FormControl>
                               </FormGroup>
@@ -216,19 +216,16 @@ class ViewScores extends Component {
                               </FormGroup>
                             </Form>
                           </Modal.Body>
-                          {/* <Modal.Footer>
-                            <Button bsStyle="primary">Update</Button>
-                          </Modal.Footer> */}
                         </Modal>
                     </div>
                   ) : (null)}
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </Grid>
-    )
+    );
   }
 }
 

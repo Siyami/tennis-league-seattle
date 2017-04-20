@@ -3,7 +3,7 @@ import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 
 class Map extends Component {
 	render(){
-		const mapContainer = <div style={{height: '100%', width:'100%'}}></div>
+		const mapContainer = <div style={{height: '100%', width:'100%'}}></div>;
 
 		const markers = this.props.markers.map((court, i) => {
 
@@ -13,10 +13,10 @@ class Map extends Component {
 					lng: court.location.lng
 				},
 				title: court.location.address
-			}
+			};
 
-			return <Marker key={i} {...marker} />
-		})
+			return <Marker key={i} {...marker} />;
+		});
 
 		return (
 	    <GoogleMapLoader
@@ -29,7 +29,7 @@ class Map extends Component {
 		            { markers }
 		        </GoogleMap>
 	    	} />
-		)
+		);
 	}
 }
 

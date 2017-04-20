@@ -36,7 +36,7 @@ class Home extends Component {
           </Carousel.Item>
         </Carousel>
       </Grid>
-    )
+    );
   }
 }
 

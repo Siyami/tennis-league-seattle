@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 
 class FallLeague extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       playersInFall2017: [],
@@ -14,14 +14,14 @@ class FallLeague extends Component {
       isButtonDisabled: false,
       send: false,
       playerId: cookie.load('playerId')
-    }
+    };
     this.joinLeague = this.joinLeague.bind(this);
   }
 
   componentDidMount() {
     axios.get('/api/players_leagues/3')
      .then((res) => {
-       this.setState({ playersInFall2017: res.data })
+       this.setState({ playersInFall2017: res.data });
 
        this.state.playersInFall2017.forEach((player) => {
 
@@ -30,13 +30,13 @@ class FallLeague extends Component {
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {
-           this.setState({ isButtonDisabled: true })
+           this.setState({ isButtonDisabled: true });
          }
-       })
+       });
      })
      .catch((err) => {
        console.log(err);
-     })
+     });
   }
 
   joinLeague() {
@@ -45,7 +45,7 @@ class FallLeague extends Component {
     const lastName = cookie.load('playerLastName');
     const homeCourt = cookie.load('playerHomeCourt');
 
-    this.setState({ isButtonDisabled: true })
+    this.setState({ isButtonDisabled: true });
 
     // Join league
     axios({
@@ -58,15 +58,15 @@ class FallLeague extends Component {
     })
     .then((res) => {
       if(res.status >= 400) {
-        alert(res.data + ', Please Log In or Sign Up to Join a League')
-        browserHistory.push('/signup')
+        alert(res.data + ', Please Log In or Sign Up to Join a League');
+        browserHistory.push('/signup');
       }
-      this.setState({ send: true })
+      this.setState({ send: true });
       console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
@@ -79,7 +79,7 @@ class FallLeague extends Component {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     if(this.state.playerId) {
       this.setState({
@@ -90,7 +90,7 @@ class FallLeague extends Component {
             email: email,
             homeCourt: homeCourt
           }]
-        )})
+        )});
     }
   }
 
@@ -123,12 +123,12 @@ class FallLeague extends Component {
                   <td>0</td>
                   <td>{player.email}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </Grid>
-    )
+    );
   }
 }
 

@@ -6,7 +6,7 @@ import { browserHistory, Link } from 'react-router';
 
 class SpringLeague extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       playersInSpring2017: [],
@@ -14,7 +14,7 @@ class SpringLeague extends Component {
       isButtonDisabled: false,
       admin: cookie.load('admin'),
       playerId: cookie.load('playerId')
-    }
+    };
     this.joinLeague = this.joinLeague.bind(this);
   }
 
@@ -24,17 +24,17 @@ class SpringLeague extends Component {
       .then((res) => {
         this.setState({
          scores: res.data
-        })
+       });
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   componentDidMount() {
     axios.get('/api/players_leagues/1')
      .then((res) => {
-       this.setState({ playersInSpring2017: res.data })
+       this.setState({ playersInSpring2017: res.data });
 
        this.state.playersInSpring2017.forEach((player) => {
 
@@ -43,13 +43,13 @@ class SpringLeague extends Component {
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {
-           this.setState({ isButtonDisabled: true })
+           this.setState({ isButtonDisabled: true });
          }
-       })
+       });
      })
      .catch((err) => {
        console.log(err);
-     })
+     });
   }
 
   joinLeague() {
@@ -58,7 +58,7 @@ class SpringLeague extends Component {
     const lastName = cookie.load('playerLastName');
     const homeCourt = cookie.load('playerHomeCourt');
 
-    this.setState({ isButtonDisabled: true })
+    this.setState({ isButtonDisabled: true });
 
     // Join league
     axios({
@@ -71,14 +71,14 @@ class SpringLeague extends Component {
     })
     .then((res) => {
       if(res.status >= 400) {
-        alert(res.data + ', Please Log In or Sign Up to Join a League')
-        browserHistory.push('/signup')
+        alert(res.data + ', Please Log In or Sign Up to Join a League');
+        browserHistory.push('/signup');
       }
       console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
@@ -91,7 +91,7 @@ class SpringLeague extends Component {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     if(this.state.playerId) {
       this.setState({
@@ -103,10 +103,8 @@ class SpringLeague extends Component {
             homeCourt: homeCourt
           }]
         )}
-      )
-
+      );
     }
-
   }
 
   render() {
@@ -155,13 +153,13 @@ class SpringLeague extends Component {
                   <td>{player.email}</td>
                   {this.state.admin === 'true' ? (<Link to="/UpdateScores"><Button bsStyle="primary">Update</Button></Link>) : (null)}
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
 
       </Grid>
-    )
+    );
   }
 }
 

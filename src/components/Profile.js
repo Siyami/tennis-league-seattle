@@ -5,12 +5,12 @@ import { Grid, Row, Col, Thumbnail, Table } from 'react-bootstrap';
 
 class Profile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       player: {},
       playerScores: []
-    }
+    };
   }
 
   componentWillMount() {
@@ -23,20 +23,20 @@ class Profile extends Component {
      .then((res) => {
        this.setState({
          player: res.data
-       })
+       });
      })
      .catch((err) => {
        console.log(err);
-     })
+     });
 
      // Get loggedIn player's scores
      axios.get(`/api/combined_scores/${playerId}`)
       .then((res) => {
-        this.setState({playerScores: res.data})
+        this.setState({playerScores: res.data});
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   render() {
@@ -75,7 +75,7 @@ class Profile extends Component {
                         {`${score.firstSet1}-${score.firstSet2} / ${score.secondSet1}-${score.secondSet2}`} {score.tieBreak1.length > 0 ? (`/ ${score.tieBreak1}-${score.tieBreak2}`) : null}
                       </td>
                     </tr>
-                  )
+                  );
                 })}
               </tbody>
             </Table>
@@ -83,7 +83,7 @@ class Profile extends Component {
           </Col>
         </Row>
       </Grid>
-    )
+    );
   }
 }
 

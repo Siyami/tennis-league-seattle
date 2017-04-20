@@ -44,11 +44,11 @@ class Login extends Component {
      })
     .then((res) => {
       if(res.status < 400) {
-        this.props.setStateFromLoginComponent()
-        browserHistory.push('/')
+        this.props.setStateFromLoginComponent();
+        browserHistory.push('/');
       }
       else {
-        alert(res.data)
+        alert(res.data);
       }
     })
     .catch((err) => {
@@ -99,7 +99,7 @@ class Login extends Component {
           </Row>
         </Validation.components.Form>
       </Grid>
-    )
+    );
   }
 }
 

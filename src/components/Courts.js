@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Courts extends Component {
 	render(){
 		const list = this.props.courts.map((court, i) => {
 			return (
 				<li key={i}>{court.name}</li>
-			)
-		})
+			);
+		});
 
 		return (
 			<div>
@@ -15,8 +15,8 @@ class Courts extends Component {
 					{list}
 				</ol>
 			</div>
-		)
+		);
 	}
 }
 
-export default Courts
+export default Courts;

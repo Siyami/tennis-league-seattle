@@ -41,7 +41,7 @@ app.use((err, _req, res, _next) => {
     return res
       .status(err.output.statusCode)
       .set('Content-Type', 'text/plain')
-      .send(err.output.payload.message)
+      .send(err.output.payload.message);
   }
 
   console.error(err.stack);

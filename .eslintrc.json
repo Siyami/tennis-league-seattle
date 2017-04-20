@@ -1,0 +1,24 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "semi": 2,
+    "no-multi-spaces": 2,
+    "quote-props": [1, "consistent-as-needed"],
+    "no-cond-assign": [2, "except-parens"],
+    "radix": 0,
+    "space-infix-ops": 0,
+    "default-case": 0,
+    "no-else-return": 0,
+    "no-param-reassign": 0,
+    "quotes": 0
+  },
+  "plugins": [
+    "react"
+  ]
+}

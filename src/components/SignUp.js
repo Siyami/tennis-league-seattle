@@ -7,7 +7,7 @@ import './Validations';
 
 class SignUp extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       firstName: '',
@@ -19,7 +19,7 @@ class SignUp extends Component {
       picUrl: '',
       admin: false,
       errors: {}
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,9 +52,9 @@ class SignUp extends Component {
     })
     .then((res) => {
 
-      this.props.setStateFromLoginComponent()
+      this.props.setStateFromLoginComponent();
       console.log(res);
-      browserHistory.push('/')
+      browserHistory.push('/');
     })
     .catch((err) => {
       console.log(err);
@@ -149,7 +149,7 @@ class SignUp extends Component {
                   Sign Up
                 </Validation.components.Button>
                 <div style={{textAlign: "center", margin: "5% 20%"}}>
-                  <a onClick={() => {browserHistory.push('/login')}}>Already have an account? Click to Log In</a>
+                  <a onClick={() => {browserHistory.push('/login');}}>Already have an account? Click to Log In</a>
                 </div>
               </Form>
             </Col>

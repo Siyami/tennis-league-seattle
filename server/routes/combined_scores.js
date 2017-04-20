@@ -28,15 +28,15 @@ router.get('/combined_scores', (req, res, next) => {
     .innerJoin('players', 'scores.player_id', 'players.id')
     .orderBy('scores.score_date')
     .then((scores) => {
-      const responseData = camelizeKeys(scores)
+      const responseData = camelizeKeys(scores);
 
       res.send(responseData);
     })
     .catch((err) => {
       console.log(err);
-      return next(boom.create(500, 'from api combined_scores get request'))
-    })
-})
+      return next(boom.create(500, 'from api combined_scores get request'));
+    });
+});
 
 // One to Many relation between users and scores table
 router.get('/combined_scores/:id', (req, res, next) => {
@@ -52,15 +52,14 @@ router.get('/combined_scores/:id', (req, res, next) => {
     .where('scores.player_id', id)
     .orderBy('scores.score_date')
     .then((scores) => {
-      const responseData = camelizeKeys(scores)
+      const responseData = camelizeKeys(scores);
 
       res.send(responseData);
     })
     .catch((err) => {
       console.log(err);
-      return next(boom.create(500, 'from api combined_scores get/:id request'))
-    })
-
-})
+      return next(boom.create(500, 'from api combined_scores get/:id request'));
+    });
+});
 
 module.exports = router;

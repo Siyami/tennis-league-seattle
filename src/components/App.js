@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {  } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
@@ -8,12 +7,12 @@ import cookie from 'react-cookie';
 
 class App extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
 			playerFirstName: cookie.load('playerFirstName'),
 			isLoggedIn: false
-		}
+		};
 		this.setStateFromLoginComponent = this.setStateFromLoginComponent.bind(this);
 		this.logOut = this.logOut.bind(this);
 	}
@@ -21,17 +20,17 @@ class App extends Component {
 	componentWillMount () {
 		axios.get('/api/token')
 			.then((res) => {
-				 this.setState({ isLoggedIn: res.data })
+				 this.setState({ isLoggedIn: res.data });
 			 })
 			.catch(err => {
-				console.log(err)
+				console.log(err);
 			});
 	}
 
 	setStateFromLoginComponent(loggedInPlayerFirstName, loggedInPlayerLastName) {
 		this.setState({
 			isLoggedIn: true,
-		})
+		});
 	}
 
 	logOut() {
@@ -39,8 +38,8 @@ class App extends Component {
 			.then((res) => {
 				this.setState({
 					isLoggedIn: false
-				})
-				browserHistory.push('/')
+				});
+				browserHistory.push('/');
 			})
 			.catch((err) => {
 				console.log(err);
@@ -79,8 +78,8 @@ class App extends Component {
 							</Nav>
 						) : (
 							<Nav pullRight>
-								<NavItem eventKey={1} onClick={() => {browserHistory.push('/login')}}>Log In</NavItem>
-								<NavItem eventKey={2} onClick={() => {browserHistory.push('/signup')}}>Sign Up</NavItem>
+								<NavItem eventKey={1} onClick={() => {browserHistory.push('/login');}}>Log In</NavItem>
+								<NavItem eventKey={2} onClick={() => {browserHistory.push('/signup');}}>Sign Up</NavItem>
 							</Nav>
 						)
 					}
@@ -94,7 +93,7 @@ class App extends Component {
 					}
 				)}
 			</div>
-		)
+		);
 	}
 }
 

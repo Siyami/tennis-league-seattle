@@ -4,11 +4,11 @@ import axios from 'axios';
 import cookie from 'react-cookie';
 import { browserHistory } from 'react-router';
 import Validation from 'react-validation';
-import './Validations'
+import './Validations';
 
 class SubmitScore extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       opponents: [],
@@ -22,7 +22,7 @@ class SubmitScore extends Component {
       tieBreak2: '',
       loggedInPlayerFirstName: '',
       loggedInPlayerLastName: ''
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -32,7 +32,7 @@ class SubmitScore extends Component {
       .then((res) => {
         this.setState({
           opponents: res.data
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +40,7 @@ class SubmitScore extends Component {
       this.setState({
         loggedInPlayerFirstName: cookie.load('playerFirstName'),
         loggedInPlayerLastName: cookie.load('playerLastName')
-      })
+      });
   }
 
   handleChange(event) {
@@ -72,7 +72,7 @@ class SubmitScore extends Component {
     })
     .then((res) => {
       console.log(res.data);
-      browserHistory.push('/viewscores')
+      browserHistory.push('/viewscores');
     })
     .catch((err) => {
       console.log(err);
@@ -96,7 +96,7 @@ class SubmitScore extends Component {
               {this.state.opponents.map((opponent) => {
                 return (
                   <option key={opponent.id}>{`${opponent.firstName} ${opponent.lastName}`}</option>
-                )
+                );
               })}
             </FormControl>
           </FormGroup>
@@ -178,7 +178,7 @@ class SubmitScore extends Component {
           </FormGroup>
         </Form>
       </Grid>
-    )
+    );
   }
 }
 

@@ -1,4 +1,3 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('players').del()
@@ -174,7 +173,7 @@ exports.seed = function(knex, Promise) {
           created_at: new Date('2017-01-29 14:26:16 UTC'),
           updated_at: new Date('2017-01-29 14:26:16 UTC')
         }
-      ])
+      ]);
     })
     .then(() => {
       return knex.raw(

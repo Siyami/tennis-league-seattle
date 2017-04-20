@@ -6,21 +6,21 @@ import { browserHistory } from 'react-router';
 
 class SummerLeague extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       playersInSummer2017: [],
       unSortedPlayersAndScores: [],
       isButtonDisabled: false,
       playerId: cookie.load('playerId')
-    }
+    };
     this.joinLeague = this.joinLeague.bind(this);
   }
 
   componentDidMount() {
     axios.get('/api/players_leagues/2')
      .then((res) => {
-       this.setState({ playersInSummer2017: res.data })
+       this.setState({ playersInSummer2017: res.data });
 
        this.state.playersInSummer2017.forEach((player) => {
 
@@ -29,15 +29,14 @@ class SummerLeague extends Component {
 
          // if logged in players id is in players_leagues table then disable join league button
          if (player.playerId == id) {
-           this.setState({ isButtonDisabled: true })
+           this.setState({ isButtonDisabled: true });
          }
 
-       })
-
+       });
      })
      .catch((err) => {
        console.log(err);
-     })
+     });
   }
 
   joinLeague() {
@@ -46,7 +45,7 @@ class SummerLeague extends Component {
     const lastName = cookie.load('playerLastName');
     const homeCourt = cookie.load('playerHomeCourt');
 
-    this.setState({ isButtonDisabled: true })
+    this.setState({ isButtonDisabled: true });
 
     // Join league
     axios({
@@ -59,14 +58,14 @@ class SummerLeague extends Component {
     })
     .then((res) => {
       if(res.status >= 400) {
-        alert(res.data + ', Please Log In or Sign Up to Join a League')
-        browserHistory.push('/signup')
+        alert(res.data + ', Please Log In or Sign Up to Join a League');
+        browserHistory.push('/signup');
       }
       console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     // Send welcome email when player joins the league
     axios.post('/api/emails', {
@@ -80,7 +79,7 @@ class SummerLeague extends Component {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 
     if(this.state.playerId) {
       this.setState({
@@ -91,7 +90,7 @@ class SummerLeague extends Component {
             email: email,
             homeCourt: homeCourt
           }]
-        )})
+        )});
     }
   }
 
@@ -124,13 +123,13 @@ class SummerLeague extends Component {
                   <td>0</td>
                   <td>{player.email}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
 
       </Grid>
-    )
+    );
   }
 }
 

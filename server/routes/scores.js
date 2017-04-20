@@ -40,9 +40,9 @@ router.get('/scores/:leagueId', (req, res, next) => {
     })
     .catch((err) => {
       next(err);
-    })
+    });
 
-})
+});
 
 router.post('/scores', authorize, (req, res, next) => {
   const { leagueId, opponent, result, firstSet1, firstSet2, secondSet1, secondSet2, scoreDate, tieBreak1, tieBreak2 } = req.body;
@@ -111,7 +111,7 @@ router.patch('/scores/:id', authorize, (req, res, next) => {
 
       return knex('scores')
         .update(decamelizeKeys(updateScore), '*')
-        .where('id', id)
+        .where('id', id);
     })
     .then((rows) => {
       const score = camelizeKeys(rows[0]);

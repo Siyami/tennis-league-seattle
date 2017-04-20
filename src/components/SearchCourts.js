@@ -6,10 +6,10 @@ import { Grid } from 'react-bootstrap';
 
 class SearchCourts extends Component {
 	constructor(){
-		super()
+		super();
 		this.state = {
 			courts: []
-		}
+		};
 	}
 
 	componentDidMount(){
@@ -19,18 +19,18 @@ class SearchCourts extends Component {
 			.then(({data}) => {
 				this.setState({
 					courts: data.response.venues
-				})
+				});
 			})
 			.catch((err) => {
 				console.log(err);
-			})
+			});
 	}
 
 	render(){
 		const location = {
 			lat: 47.538,
 			lng: -122.27
-		}
+		};
 
 		// you can manually include markers
     // const markers = [
@@ -62,7 +62,7 @@ class SearchCourts extends Component {
 					</div>
 				</div>
 			</Grid>
-		)
+		);
 	}
 }
 

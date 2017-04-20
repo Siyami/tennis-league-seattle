@@ -22,7 +22,7 @@ const authorize = function(req, res, next) {
 };
 
 router.get('/players_leagues/:leagueId', (req, res, next) => {
-  const leagueId = Number.parseInt(req.params.leagueId)
+  const leagueId = Number.parseInt(req.params.leagueId);
 
   if (Number.isNaN(leagueId)) {
     return next();
@@ -40,8 +40,8 @@ router.get('/players_leagues/:leagueId', (req, res, next) => {
     })
     .catch((err) => {
       next(err);
-    })
-})
+    });
+});
 
 router.post('/players_leagues', authorize, (req, res, next) => {
   const { leagueId } = req.body;

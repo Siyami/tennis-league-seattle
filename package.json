@@ -32,6 +32,8 @@
   "proxy": "http://localhost:4000",
   "devDependencies": {
     "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
     "foreman": "^2.0.0",
     "nodemon": "^1.11.0",
     "react-scripts": "0.9.5"
