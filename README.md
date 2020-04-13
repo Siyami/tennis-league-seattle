@@ -6,4 +6,4 @@
 
 * APIs used: Google Maps API
 
-* Future development: Switch app to React-Native, add more league categories, add tournaments.
+* Future development: Add more league categories, add tournaments.
